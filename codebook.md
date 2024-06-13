@@ -76,6 +76,9 @@
 | Bar | Numeric | Meaning of bar (in some units). |
 | Baz | Numeric | Meaning of baz. |
 | Zoo | Numeric | Meaning of zoo. |
+| KINGS | Numeric | Meaning of zoo. |
+| QUEENS | Numeric | Meaning of zoo. |
+
 
 ----------
 
