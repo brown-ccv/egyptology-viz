@@ -1,35 +1,94 @@
 **Dataset Title:** Pyramid Data (TBD)
+
 **Date Range:** From month YYYY - To month YYYY (might not be needed)  
+
 **Purpose:**  This dataset is for foo bar.
 
 ----------
 
 ### Variable Descriptions:
 
-1.  **timestamp**
-    
-    -   Type: datetime
-    -   Description: timestamp meaning.
-2.  **monument_id**
+1.  **Ruler**
+
+    -   Type: Categorical
+    -   Description:
+2.  **Gender**
     
     -   Type: Categorical
-    -   Description: Monument number.
-3.  **foo**
+    -   Description: 
+3.  **Start of Reign**
     
     -   Type: Numeric
-    -   Description: foo description.
-4.  **bar**
+    -   Description:
+4.  **End of Reign**
     
     -   Type: Numeric
-    -   Description: Bar description.
-5.  **baz**
+    -   Description: 
+5.  **Length of Reign**
     
     -   Type: Numeric
-    -   Description: Baz description.
-6.  **zoo**
+    -   Description: 
+6.  **Period**
+    
+    -   Type: Categorical
+    -   Description: 
+7.  **Dynasty**
+    
+    -   Type: Categorical
+    -   Description: 
+8.  **Title**
+    
+    -   Type: Categorical
+    -   Description: 
+9.  **Pyramid Texts**
+    
+    -   Type: Categorical
+    -   Description: 
+10.  **Site/Location**
+    
+    -   Type: Categorical
+    -   Description: 
+11.  **Orientation**
+    
+    -   Type: Categorical
+    -   Description: 
+12.  **Exterior Material**
+    
+    -   Type: Categorical
+    -   Description: 
+13.  **State of Completion**
+    
+    -   Type: Categorical
+    -   Description: 
+14.  **Superstructure Type**
+    
+    -   Type: Categorical
+    -   Description: 
+15.  **Height**
     
     -   Type: Numeric
-    -   Description: zoo description.
+    -   Description: Height of the pyramid in meters.
+16.  **Length**
+    
+    -   Type: Numeric
+    -   Description: Length of the base of the pyramid in meters.
+17.  **Width**
+    
+    -   Type: Numeric
+    -   Description: Width of the base of the pyramid in meters.
+18.  **Slope**
+    
+    -   Type: Numeric
+    -   Description: Slope of the pyramid in degrees.
+19.  **Enclosure Wall Dimensions**
+    
+    -   Type: Numeric
+    -   Description: Dimensions of the enclosure wall surrounding the pyramid in meters. (Note, should be split into three columns like the pyramid dimensions)
+20.  **Notes**
+    
+    -   Type: Categorical
+    -   Description: Miscellaneous notes about the pyramid.
+
 
 ----------
 
