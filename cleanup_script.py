@@ -44,6 +44,7 @@ def main():
     parser = argparse.ArgumentParser(description=description)
 
     # Read the json data into a dataframe
+    #df = pd.DataFrame(pd.read_excel("../assets/Condensed Pyramid Data copy (6-14-2024).xlsx"))
     df = pd.DataFrame(pd.read_json("assets/raw_pyramid_data.json"))
 
     # Figure out which functions to execute based on the arguments
