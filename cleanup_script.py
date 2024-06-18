@@ -8,11 +8,12 @@ def remove_whitespace(df, columns=[]):
     string values
     """
     
-    if len(columns) != 0:
-        df = df[columns]    
+    if len(columns) == 0:
+        df = df.map(lambda x: x.strip() if isinstance(x, str) else x)
+    else:
+        df = df[columns].map(lambda x: x.strip() if isinstance(x, str) else x)
     
-    return df.map(lambda x: x.strip() if isinstance(x, str) else x)
-
+    return df
     
 def normalize_column_name(name):
     """
@@ -23,21 +24,25 @@ def normalize_column_name(name):
     new_name = re.sub(r' \(.*\)', r'', new_name)
     new_name = new_name.replace(" ", "_")
     new_name = new_name.replace("/", "_or_")
+
     return new_name
 
 def normalize_columns(df, columns=[]):
     """
     Convert columns names into snake case (like_this)
     """
+
     col_names = df.columns
 
     if len(columns) == 0:
-        col_names.map(lambda x: normalize_column_name(x))
+        col_names = col_names.map(lambda x: normalize_column_name(x))
     else:
         for name in columns:
-            col_names[col_names.index(name)] = normalize_column_name(name)
+            col_names = col_names[col_names.index(name)] = normalize_column_name(name)
+    
+    df.columns = col_names
 
-    return col_names
+    return df
 
 def main():
     description = __doc__
@@ -57,9 +62,20 @@ def main():
         '--outname',
         help="The name of the output file",
     )
+    parser.add_argument(
+        '-rw',
+        '--removews',
+        '--remove_whitespace',
+        nargs='*'
+    )
+    parser.add_argument(
+        '-nc',
+        '--normcols',
+        '--normalize_columns',
+        nargs='*'
+    )
+
     args = parser.parse_args()
-    print(args)
-    exit()
 
     # Read the json data into a dataframe
     #df = pd.DataFrame(pd.read_excel("../assets/Condensed Pyramid Data copy (6-14-2024).xlsx"))
@@ -68,8 +84,8 @@ def main():
     # Figure out which functions to execute based on the arguments
     # These function calls are here to reserve the functionality of the 
     # previous version for now.
-    remove_whitespace(df)
-    normalize_columns(df)
+    df = remove_whitespace(df)
+    df = normalize_columns(df)
 
     # Export dataset to json
     df.to_json("assets/normalized_pyramid_data.json", orient="columns", indent=2)
