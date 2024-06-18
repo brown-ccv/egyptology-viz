@@ -89,7 +89,8 @@ def main():
         df = normalize_columns(df, args.normcols)
 
     # Export dataset to json
-    df.to_json("assets/normalized_pyramid_data.json", orient="columns", indent=2)
+    outpath = args.out if args.out != None else "out.json"
+    df.to_json(outpath, orient="columns", indent=2)
 
 if __name__ == "__main__":
     main()
