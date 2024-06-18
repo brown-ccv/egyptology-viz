@@ -43,6 +43,24 @@ def main():
     description = __doc__
     parser = argparse.ArgumentParser(description=description)
 
+    # Add arguments
+    parser.add_argument(
+        '-i',
+        '--in',
+        '--inname',
+        help="The name of the input file",
+        required=True
+    )
+    parser.add_argument(
+        "-o",
+        '--out',
+        '--outname',
+        help="The name of the output file",
+    )
+    args = parser.parse_args()
+    print(args)
+    exit()
+
     # Read the json data into a dataframe
     #df = pd.DataFrame(pd.read_excel("../assets/Condensed Pyramid Data copy (6-14-2024).xlsx"))
     df = pd.DataFrame(pd.read_json("assets/raw_pyramid_data.json"))
