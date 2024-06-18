@@ -11,7 +11,7 @@ def remove_whitespace(df, columns=[]):
     if len(columns) == 0:
         df = df.map(lambda x: x.strip() if isinstance(x, str) else x)
     else:
-        df = df[columns].map(lambda x: x.strip() if isinstance(x, str) else x)
+        df[columns].map(lambda x: x.strip() if isinstance(x, str) else x)
     
     return df
     
@@ -37,8 +37,9 @@ def normalize_columns(df, columns=[]):
     if len(columns) == 0:
         col_names = col_names.map(lambda x: normalize_column_name(x))
     else:
-        for name in columns:
-            col_names = col_names[col_names.index(name)] = normalize_column_name(name)
+        #col_names = col_names[col_names.index(name)] = normalize_column_name(name)
+        index_names = [normalize_column_name(name) if name in columns else name for name in col_names]
+        col_names = pd.Index(index_names)
     
     df.columns = col_names
 
@@ -81,11 +82,11 @@ def main():
     #df = pd.DataFrame(pd.read_excel("../assets/Condensed Pyramid Data copy (6-14-2024).xlsx"))
     df = pd.DataFrame(pd.read_json("assets/raw_pyramid_data.json"))
 
-    # Figure out which functions to execute based on the arguments
-    # These function calls are here to reserve the functionality of the 
-    # previous version for now.
-    df = remove_whitespace(df)
-    df = normalize_columns(df)
+    # Execute cleanup functions based on command line arguments
+    if args.removews != None:
+        df = remove_whitespace(df, args.removews)
+    if args.normcols != None:
+        df = normalize_columns(df, args.normcols)
 
     # Export dataset to json
     df.to_json("assets/normalized_pyramid_data.json", orient="columns", indent=2)
