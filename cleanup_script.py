@@ -59,26 +59,26 @@ def main():
     parser.add_argument(
         '-i',
         '--in',
-        '--inname',
+        '--input',
         help="The name of the input file",
         required=True
     )
     parser.add_argument(
         "-o",
         '--out',
-        '--outname',
+        '--output',
         help="The name of the output file",
     )
     parser.add_argument(
-        '-rw',
+        '-w',
         '--removews',
-        '--remove_whitespace',
+        '--remove-whitespace',
         nargs='*'
     )
     parser.add_argument(
-        '-nc',
+        '-n',
         '--normcols',
-        '--normalize_columns',
+        '--normalize-columns',
         nargs='*'
     )
 
@@ -89,13 +89,13 @@ def main():
     df = pd.DataFrame(pd.read_json("assets/raw_pyramid_data.json"))
 
     # Execute cleanup functions based on command line arguments
-    if args.removews != None:
+    if args.removews:
         df = remove_whitespace(df, args.removews)
-    if args.normcols != None:
+    if args.normcols:
         df = normalize_columns(df, args.normcols)
 
     # Export dataset to json
-    outpath = args.out if args.out != None else "out.json"
+    outpath = args.out if args.out else "out.json"
     df.to_json(outpath, orient="columns", indent=2)
 
 if __name__ == "__main__":
