@@ -26,8 +26,8 @@ def normalize_column_name(name):
     """
     Convert a single column name into snake case (like_this)
     """
-    new_name = name.strip()
-    new_name = new_name.lower()
+    new_name = name.strip().lower()
+    # This regex removes parentheticals completely
     new_name = re.sub(r' \(.*\)', r'', new_name)
     new_name = new_name.replace(" ", "_")
     new_name = new_name.replace("/", "_or_")
@@ -42,7 +42,7 @@ def normalize_columns(df, columns=[]):
     col_names = df.columns
 
     if len(columns) == 0:
-        col_names = col_names.map(lambda x: normalize_column_name(x))
+        col_names = col_names.map(normalize_column_name)
     else:
         index_names = [normalize_column_name(name) if name in columns else name for name in col_names]
         col_names = pd.Index(index_names)
@@ -88,13 +88,14 @@ def main():
     df = pd.read_json(args.input)
 
     # Execute cleanup functions based on command line arguments
-    if args.removews:
+    if args.removews != None:
         df = remove_whitespace(df, args.removews)
-    if args.normcols:
+    if args.normcols != None:
+        print("hey")
         df = normalize_columns(df, args.normcols)
 
     # Export dataset to json
-    outpath = args.out if args.out else "out.json"
+    outpath = args.output if args.output else "out.json"
     df.to_json(outpath, orient="columns", indent=2)
 
 if __name__ == "__main__":
