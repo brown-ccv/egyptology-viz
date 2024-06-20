@@ -2,6 +2,13 @@ import pandas as pd
 import re
 import argparse
 
+def strip_if_str(s): 
+    """
+    Strip leading/trailing whitespace from a variable if it's a string,
+    otherwise return it as is.
+    """
+    return s.strip() if isinstance(s, str) else s
+
 def remove_whitespace(df, columns=[]):
     """
     Remove leading/trailing whitespace from the elements of all columns with 
@@ -9,9 +16,9 @@ def remove_whitespace(df, columns=[]):
     """
     
     if len(columns) == 0:
-        df = df.map(lambda x: x.strip() if isinstance(x, str) else x)
+        df = df.map(strip_if_str)
     else:
-        df[columns].map(lambda x: x.strip() if isinstance(x, str) else x)
+        df[columns] = df[columns].map(strip_if_str)
     
     return df
     
@@ -37,7 +44,6 @@ def normalize_columns(df, columns=[]):
     if len(columns) == 0:
         col_names = col_names.map(lambda x: normalize_column_name(x))
     else:
-        #col_names = col_names[col_names.index(name)] = normalize_column_name(name)
         index_names = [normalize_column_name(name) if name in columns else name for name in col_names]
         col_names = pd.Index(index_names)
     
