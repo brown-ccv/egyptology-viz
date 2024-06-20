@@ -71,13 +71,15 @@ def main():
         '-w',
         '--removews',
         '--remove-whitespace',
-        nargs='*'
+        nargs='*',
+        help="Remove whitespace from string elements"
     )
     parser.add_argument(
         '-n',
         '--normcols',
         '--normalize-columns',
-        nargs='*'
+        nargs='*',
+        help="Normalize column names"
     )
 
     args = parser.parse_args()
