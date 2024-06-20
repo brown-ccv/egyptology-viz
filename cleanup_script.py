@@ -58,14 +58,12 @@ def main():
     # Add arguments
     parser.add_argument(
         '-i',
-        '--in',
         '--input',
         help="The name of the input file",
         required=True
     )
     parser.add_argument(
         "-o",
-        '--out',
         '--output',
         help="The name of the output file",
     )
@@ -85,8 +83,7 @@ def main():
     args = parser.parse_args()
 
     # Read the json data into a dataframe
-    #df = pd.DataFrame(pd.read_excel("../assets/Condensed Pyramid Data copy (6-14-2024).xlsx"))
-    df = pd.DataFrame(pd.read_json("assets/raw_pyramid_data.json"))
+    df = pd.read_json(args.input)
 
     # Execute cleanup functions based on command line arguments
     if args.removews:
