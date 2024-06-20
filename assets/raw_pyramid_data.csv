@@ -1,0 +1,87 @@
+ID,Ruler,Gender,Relationship,Start of Reign,End of Reign,Length of Reign (Years),Period,Dynasty,Title,Pyramid Texts,Site/Location,Orientation,Exterior Material,State of Completion,Superstructure Type,Height (m),Length (m),Width (m) ,Slope (degrees),Enclosure Wall Dimensions (m),Notes
+0,Djoser,King,,2630.0,2611.0,19,Old Kingdom,3,Step Pyramid of Djoser ,,Saqqara,N-S,Limestone,,Pyramid,60,121,109,,,15 gates
+1,Sekhemhet,King ,,2611.0,2603.0,8,Old Kingdom,3,Enclosure and Unfinished Step Pyramid of Sekhemhet,,Saqqara,N-S,Stone,Unfinished,Pyramid,7,120,120,,"536 N/S; 194 E/W, walls 5m tall","unfinished, no limestone casing (Verner mentions limestone casing) , ""probably inyended to rise about 70 m (230 ft), in seven steps - higher than Djoser's."" (Lehner, 94)"
+2,Nebka?,King,,2649.0,2630.0,19,Old Kingdom,3,Pyramid of Nebka? Unfinished Pyramid,,Zawiyet el-Aryan,E-W,Stone,Unfinished,Pyramid,unknown,200,200,,enclosure wall oriented N-S,debate over whether this is Pyramid of Nebka
+3,Khaba,King,,2603.0,2599.0,4,Old Kingdom,3,Pyramid of Khaba ,,Zawiyet el-Aryan,E-W,Stone,Unfinished,Pyramid,20 (unfinished) ,84,84,,,began as step pyramid
+4,Huni? Sneferu?,King,,2599.0,2575.0,24,Old Kingdom,4,Meidum Pyramid,,Meidum,E-W,Mudbrick,Unfinished,Pyramid,92,144,144,51,,"limestone casing, causeway 200m, Cult Pyramid - 26 m, 75 degree angle (Verner)"
+5,Sneferu,King,,2575.0,2551.0,24,Old Kingdom,4,Bent Pyramid,,Dahshur,E-W,Stone,,Pyramid,105,188,188,54,,"limestone casing, Cult Pyramid - 52 m side, 44 degree angle, 26 m height"
+6,Sneferu,King,,,,,Old Kingdom,4,Red Pyramid,,Dahshur,E-W,Stone,,Pyramid,105,220,220,43,,"red granite false door, no Cult Pyramid, causeway not completed"
+7,Sneferu,Queen,"Royal Mother (thought to be wife of Sneferu, mother of Khufu)",,,,Old Kingdom,4,Queen Hetepheres I - Tomb G 7000x,,Giza,,,,Shaft Tomb,,,,,,
+8,,,,,,,,,,,,,,,,,,,,,
+9,Khufu,King,,2551.0,2528.0,23,Old Kingdom,4,Pyramid of Khufu/Great Pyramid of Giza,,Giza,,Stone,,Pyramid,146.59,230.33,230.33,51,,"Cult Pyramid - 21.75m (base), 51 degree angle, 13.80 m height, limestone core and casing, likely moves to Giza for the space to build a large pyramid where there was a supply of limestone (Verner) extensive building - king chamber, queen chamber, mortuary and valley temple, boat pits"
+10,Khufu,Female,"Royal Mother, Wife of Sneferu, Wife of Khufu",,,,Old Kingdom,4,Queen Meretities I - Pyramid G 1-a,,Giza,,Stone,,Pyramid,,46.5,46.5,51,,"core of limestone, includes temple, chapel, boat pit"
+11,Khufu,Queen,Unknown,,,,Old Kingdom,4,Pyramid G 1-b,,Giza,,Stone,,Pyramid,,46.5,46.5,51,,"Queen unknown, similar to GI-a"
+12,Khufu,Queen ,"Wife of Khufu, Mother of Khafre?",,,,Old Kingdom,4,Queen Henutsen - Pyramid G 1-c,,Giza,,Stone,,Pyramid,,42.85,42.85,,,"casing unfinished, no boat pit, includes temple"
+13,,,,,,,,,,,,,,,,,,,,,
+14,Djedefre,King,,2528.0,2520.0,8,Old Kingdom,4,Pyramid of Djedefre,,Abu Roash,E-W,Stone,,"Pyramid, Temple, Enclosure",68,106.2,106.2,51,,"Cult Pyramid - 10.5 m base, 65 degree angle"
+15,Djedefre,Queen,,,,,Old Kingdom,4,Hetepheres II - Mastaba G 7350,,,,,,Mastaba,,,,,,
+16,,,,,,,,,,,,,,,,,,,,,
+17,Khafre,King,,2520.0,2494.0,26,Old Kingdom,4,Pyramid of Khafre,,Giza,,Stone,,Pyramid,143.5,215,215,53,,bottom course made of granite
+18,Khafre,Queen,,,,,Old Kingdom,4,Unknown Tombs of Khamerembti I and Heknuhezet ,,Giza (probably),,,,?,,,,,,
+19,Khafre,Queen,,,,,Old Kingdom,4,Meresankh II - Mastaba G 7410,,,,,,Mastaba,,,,,,
+20,Khafre,Queen,,,,,Old Kingdom,4,Per [senet] - rock-cut tomb LG 88,,,,,,Rock-Cut Tomb,,,,,,
+21,,,,,,,,,,,,,,,,,,,,,
+22,Menkaure,King,,2490.0,2472.0,18,Old Kingdom,4,Pyramid of Menkaure,,Giza,,Stone,,Pyramid,65,102.2,104.6,51,,bottom courses made of red granite
+23,Menkaure,Queen,,,,,Old Kingdom,4,Pyramid G 111-a,,,,,,Pyramid,,,,,,
+24,Menkaure,Queen,,,,,Old Kingdom,4,Pyramid G 111-b,,,,,,Pyramid,,,,,,
+25,Menkaure,Queen ,,,,,Old Kingdom,4,Pyramid G 111-c,,,,,,Pyramid,,,,,,
+26,Menkaure,Queen ,,,,,Old Kingdom,4,Khamerenebti II and Rekhetre - Rock Cut Tombs,,,,,,Tombs,,,,,,
+27,,,,,,,,,,,,,,,,,,,,,
+28,Shepseskaf,King,,2472.0,2467.0,5,Old Kingdom,4,Mastabat el-Faroun; Tomb of Shepseskaf,,South Saqqara,,Stone,,"Mastaba, Enclosure",18,99.6,74.4,70,"mudbrick, 3m high","domed roof, granite base, causeway built to 3m"
+29,,,,,,,,,,,,,,,,,,,,,
+30,Khentkaus,Queen,,,,,Old Kingdom,4,Pyramid of Khentkaus (Mother of Neferirkare) ,,Giza? Abusir?,E-W,Stone,,"Pyramid, Temple, Enclosure",17 (estimated),26.25 (estimated),26.25 (estimated),52,,"slope of 52 degrees, black granite, red grainite, limestone pieces found"
+31,,,,,,,,,,,,,,,,,,,,,
+32,Userkaf,King,,2465.0,2458.0,7,Old Kingdom,5,Pyramid of Userkaf,,Saqqara,N-S,Stone,,"Pyramid, Causeway, Temple, Enclosure",49,73.3,73.3,53,"Userkaf enclosure wall, height total is 16 cubits/8.4m x width (at base) 8 cubits/4.18m, with rounded top and 8.33 degree angle to sides, interior square pillars in courtyard are reconstructed as 4.25m, with .95m architrave (5.2m tall total), 1.1 wide, holding a .80m peristyle roof around the court; satellite pyramid measures 20.96m square, original height of 14m, height of sanctuary on E side of pyramid 6.8m high",cased with white limestone
+33,Userkaf,King,,,,,Old Kingdom,5,Solar Temple ,,Saqqara,E-W,Stone,,"Obelisk, Temple, Causeway",31,21 (base of pedestal,21,,,
+34,Userkaf,Queen ,,,,,Old Kingdom,5,Pyramid of Neferhetepes (Mother of Sahure),,Saqqara,,,,"Pyramid, Temple",17.5,26.2,26.2,53,enclosure wall stood around 5m tall,
+35,,,,,,,,,,,,,,,,,,,,,
+36,Sahure,King,,2458.0,2446.0,12,Old Kingdom,5,Pyramid of Sahure,,Abusir,E-W,Stone,,"Pyramid, Causeway, Temple, Enclosure",51.68,78.9,78.9,50,,"limestone casing, limestone core"
+37,,,,,,,,,,,,,,,,,,,,,
+38,Neferirkare,King,,2446.0,2426.0,20,Old Kingdom,5,Pyramid of Neferirkare ,,Abusir,E-W,Stone,Unfinished,"Pyramid, Temple",72 (as planned second phase) ,105,105,53,,"56 m (unfinished step pyramid core) vs 72 m planned,  turned into true period from step pyramid, casing not added, height for true pyramid unknown, Verner says that successor Niuserre had to work on finishing this pyramid, as it was not complete at king's death.  But that the casing ""was not completed, and they valley temple and causeway were also never built"" (2001: 297)"
+39,Neferirkare,Queen,,,,,Old Kingdom,5,Pyramid of Khentkaus II (Mother of Neferefre and Niuserre),,Abusir,,,,Pyramid ,,,,,,
+40,,,,,,,,,,,,,,,,,,,,,
+41,Raneferef or Neferefre,King ,,2419.0,2416.0,3,Old Kingdom,5,Pyramid of Raneferef or Neferefre,,Abusir,E-W,Stone ,Unfinished,"Pyramid, Temple",7.5 to tip of roof terrace,65.5,65.5,78,,"pyramid unfinished became mastaba with gravel roof terrace, limestone casing blocks"
+42,,,,,,,,,,,,,,,,,,,,,
+43,Niuserre,King ,,2416.0,2388.0,28,Old Kingdom,5,Pyramid of Niuserre,,Abusir,E-W,Stone ,,"Pyramid, Temple, Causeway, Enclosure ",51.68,78.9,78.9,,,white limestone casing. Niuserre finished pyramids of Neferirkare and Khentkawes
+44,Niuserre,King,,,,,Old Kingdom,5,Niuserre Solar Temple ,,,E-W,Stone ,,"Obelisk, Temple, Causeway, Enclosure",56.5,39,39,51,,"Base of obelisk  is 19m tall, obelisk on top is 37.5, with total height at 56.5m. "
+45,Niuserre,Queen ,,,,,Old Kingdom,5,Lepsius 25 (XXV/1),,Abusir,N-S,Stone,,Mastaba,6,27.7,21.53,80,,initially meant to be pyramid turned into mastaba
+46,Niuserre,Queen ,,,,,Old Kingdom,5,Lepsius 25 (XXV/2),,Abusir ,N-S,Stone ,,Mastaba ,5 (estimate),21.68,15.65,80,,initially meant to be pyramid turned into mastaba
+47,Niuserre,Queen,,,,,Old Kingdom,5,Lepsius 24 (XXIV) - Pyramid for Reptynub ,,Abusir,N-S,Stone ,,Pyramid,24.4,31.1,31.1,57,,limestone casing
+48,,,,,,,,,,,,,,,,,,,,,
+49,Menkauhor?,King,,,,,Old Kingdom,5,Lepsius 29 (XXIX) - Headless Pyramid ,,Saqqara,,Stone ,,Pyramid ,"unknown, superstructure destroyed",52,52,,,"debate over owner of Pyramid, Merikare? Menkauhor? - Sullivan used estimated height of 32 m based on height of Khendjer pyramid, with a similar base size"
+50,,,,,,,,,,,,,,,,,,,,,
+51,Djedkare-Isesi,King,,2388.0,2356.0,32,Old Kingdom,5,Pyramid of Djedkare-Isesi,,South Saqqara,E-W,Stone ,,"Pyramid, Temple, Causeway, Enclosure ",52,78.5,78.5,52,used generic wall height of 5m,white limestone casing
+52,Djedkare-Isesi,King,,,,,Old Kingdom,5,Cult Pyramid,,South Saqqara,,,,Cult Pyramid,16,15.5,15.5,,,
+53,Djedkare-Isesi,Queen ,,,,,Old Kingdom,5,Pyramid of Queen Setibhor,,South Saqqara,,,,Pyramid,,,,,,
+54,,,,,,,,,,,,,,,,,,,,,
+55,Unas,King ,,2356.0,2323.0,33,Old Kingdom,5,Pyramid of Unas ,Yes,Saqqara,E-W,Stone ,,"Pyramid, Temple, Enclosure ",43,57.75,57.75,56,"2.62 m thick, probably similar in size to Teti (7m)","fine white limestone casing , red granite papyrus columns "
+56,Unas,King,,,,,Old Kingdom,5,Unas Causeway ,,Saqqara,E-W,Stone,,Causeway,4.5,720 (causeway total length),6.8 (causeway width at base),,,"Causeway: ~4.5m high, ~6.8 wide at base, projected ~7.0 wide on top surface, interior open corridor 2.6m wide, 3.95/4m high, exterior walls are slightly slanted inward (5 degrees) ~720m in total length (Moussa and Labrousse 2002: fig. 2);"
+57,Unas,King,,,,,Old Kingdom,5,Unas Valley Temple,,Saqqara,E-W,Stone,,Temple,9.75 (highest point of temple) 6.75 (height of lower level walls of temple),,,,, doors heights (central door ~3m with a 1m high granite architrave and .8m wide granite doorjambs; side doors 2.75m high with 1m high granite architrave and .75m wide granite doorjambs).
+58,Unas,Queen,,,,,Old Kingdom,5,Mastaba of Nebet,,,,,,Mastaba,,,,,,
+59,Unas,Queen ,,,,,Old Kingdom,5,Mastaba of Khenut,,,,,,Mastaba,,,,,,
+60,,,,,,,,,,,,,,,,,,,,,
+61,Teti,King,,2323.0,2291.0,32,Old Kingdom,6,Pyramid of Teti,Yes,Saqqara,E-W,Stone ,,"Pyramid, Temple, Enclosure ",52.5,78.75,78.75,53,,"enclosure walls made of limestone, satellite pyramid 16 m"
+62,Teti,Queen ,,,,,Old Kingdom,6,Pyramid of Sesheshet (Mother of King Teti),,Saqqara,,Stone,,Pyramid,15 (estimated),22,22,,,built near mastabas of Unas's wives Nebet and Khenut
+63,Teti,Queen ,,,,,Old Kingdom,6,Pyramid of Khuit II,,Saqqara,,Stone,,"Pyramid, Temple, Enclosure",originally approx. 20 ,19.25,19.25,,"enclosure thickness 1.55, height 1.53",
+64,Teti,Queen ,,,,,Old Kingdom,6,Pyramid of Iput I (Mother of Pepi I),,Saqqara,,Stone,,"Pyramid, Temple and Enclosure",20,21,21,51,,cased with white limestone
+65,,,,,,,,,,,,,,,,,,,,,
+66,Pepi I,King,,2289.0,2255.0,34,Old Kingdom,6,Pyramid of Pepi I,Yes,North Saqqara,E-W,Stone,,"Pyramid, Temple, Causeway, Enclosure",52.4,78.6,78.6,53,,cased with fine white limestone
+67,Pepi I,Queen ,,,,,Old Kingdom,6,Meretities II,,North Saqqara,,Stone,,Pyramid,21,,,1:2 angle (130),,
+68,Pepi I,Queen ,,,,,Old Kingdom,6,Inti ,,North Saqqara,,Stone,,Pyramid,"21, Satellite Pyramid 6.5",Satellite Pyramid 128,Satellite Pyramid 128,1:2 angle (130),,
+69,Pepi I,Queen ,,,,,Old Kingdom,6,Noubounet,,North Saqqara,,Stone,,Pyramid,21,,,1:2 angle (130),,
+70,Pepi I,Queen ,,,,,Old Kingdom,6,Ankhnespepy II,Yes,North Saqqara,,Stone,,Pyramid,60 cubits (31.5m),,,1:2 angle (130),,
+71,Pepi I,Queen ,,,,,Old Kingdom,6,Ankhnespepy III,,North Saqqara,,Stone,,Pyramid,15.6  per side,,,1:2 angle (130),,
+72,Pepi I,Queen ,,,,,Old Kingdom,6,Unknown Western Pyramid ,,North Saqqara,,Stone,,Pyramid,21,,,1:2 angle (130),,
+73,Pepy I,Queen ,,,,,Old Kingdom,6,Behenou,Yes,North Saqqara,,Stone,,,,,,,,
+74,Merenre,King,,2255.0,2246.0,9,Old Kingdom,6,Pyramid of Merenre ,Yes,South Saqqara,E-W,Stone ,,"Pyramid, Temple",52.5,78.75,78.75,53,,"cased with fine limestone, causeway 200m long, enclosure walls made of mudbrick "
+75,,,,,,,,,,,,,,,,,,,,,
+76,Pepi II,King,,2246.0,2152.0,94,Old Kingdom,6,Pyramid of Pepi II,Yes,South Saqqara,E-W,Stone ,,"Pyramid, Temple, Causeway, Enclosure",52.5,78.75,78.75,52,,
+77,Pepi II,King,,,,,Old Kingdom,6,Pepi II Cult Pyramid,,South Saqqara,,,,Cult Pyramid,,15.75,15.75,63,,
+78,Pepi II,King,,,,,Old Kingdom,6,Pyramid of Pepi II - Causeway,,South Saqqara,,,,Causeway,3.8,400,6.8,,,
+79,Pepi II,King,,,,,Old Kingdom,6,Pyramid of Pepi II - Valley Temple ,,South Saqqara,,,,Valley Temple,"upper level 5m, middle layer 5m, lower level 4.5m",,,,,
+80,Pepi II,Queen,,,,,Old Kingdom,6,Queen Neith's Pyramid,Yes,South Saqqara,,,,Pyramid,21.5,23.5,23.5,61,,satellite pyramid 5.25 m sq
+81,Pepi II,Queen,,,,,Old Kingdom,6,Queen Iput II's Pyramid,Yes,South Saqqara,,,,Pyramid,,,,55,,
+82,Pepi II,Queen,,,,,Old Kingdom,6,Queen Wedjebten's Pyramid ,Yes,South Saqqara,,,,Pyramid,,23.5,23.5,63.3,,
+83,,,,,,,,,,,,,,,,,,,,,
+84,Ibi,King,,,,uncertain,Old Kingdom,8,Pyramid of Ibi ,Yes,South Saqqara,,Stone,Unfinished?,"Pyramid, Chapel",21 (estimated),31.5,31.5,,,"casing not put in place, chapel made of mudbrick, core made of ""small stones"" (Lehner  "
+85,Khui,King,,,,,,FIP or 8,Tomb of Khui,,Dara,,,,Pyramid,,130,130,,,
