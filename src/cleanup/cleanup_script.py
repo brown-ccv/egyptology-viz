@@ -84,19 +84,40 @@ def main():
 
     args = parser.parse_args()
 
-    # Read the json data into a dataframe
-    df = pd.read_json(args.input)
+    # Read the data into a dataframe
+    # Supported file types: csv, json
+    intype = args.input.split(".")
+    if len(intype) < 2:
+        raise Exception("File name missing extension")
+    intype = intype[-1].lower()
+
+    if intype == "json":
+        df = pd.read_json(args.input)
+    elif intype == "csv":
+        df = pd.read_csv(args.input)
+    else:
+        raise Exception("Unsupported input file type or file name missing extension. Supported file types: csv, json")
 
     # Execute cleanup functions based on command line arguments
     if args.removews != None:
         df = remove_whitespace(df, args.removews)
     if args.normcols != None:
-        print("hey")
         df = normalize_columns(df, args.normcols)
 
-    # Export dataset to json
+    # Export dataset
+    # Supported file types: csv, json
     outpath = args.output if args.output else "out.json"
-    df.to_json(outpath, orient="columns", indent=2)
+    outtype = outpath.split(".")
+    if len(intype) < 2:
+        raise Exception("File name missing extension")
+    outtype = outtype[-1].lower()
+
+    if outtype == "json":
+        df.to_json(outpath, orient="columns", indent=2)
+    elif outtype == "csv":
+        df.to_csv(outpath)
+    else:
+        raise Exception("Unsupported output file type or file name missing extension. Supported file types: csv, json")
 
 if __name__ == "__main__":
     main()
