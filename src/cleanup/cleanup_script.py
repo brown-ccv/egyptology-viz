@@ -28,7 +28,7 @@ def normalize_column_name(name):
     """
     new_name = name.strip().lower()
     # This regex removes parentheticals completely
-    new_name = re.sub(r' \(.*\)', r'', new_name)
+    new_name = re.sub(r' \(.*?\)', r'', new_name)
     new_name = new_name.replace(" ", "_")
     new_name = new_name.replace("/", "_or_")
 
@@ -115,7 +115,7 @@ def main():
     if outtype == "json":
         df.to_json(outpath, orient="columns", indent=2)
     elif outtype == "csv":
-        df.to_csv(outpath)
+        df.to_csv(outpath, index=False, header=True)
     else:
         raise Exception("Unsupported output file type or file name missing extension. Supported file types: csv, json")
 
