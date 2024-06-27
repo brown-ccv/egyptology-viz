@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import re
 import argparse
 
@@ -65,6 +66,41 @@ def yes_no_to_bool(df, columns=[]):
 
     return df
 
+def comma_years_to_float(elem):
+    if pd.isna(elem) or elem.lower() == "unknown": return np.nan
+    if isinstance(elem, float) or isinstance(elem, int): return elem
+    
+    if "less" in elem.lower():
+        # Temporary because this is useless information that shouldn't even exist,
+        # either provide months or nothing at all
+        #return elem
+        return np.nan
+
+    try:
+        elem = elem.replace(" ", "").split(",")
+        # Comma separation
+        if len(elem) == 2:
+            span = float(elem[0]) + float(elem[1]) / 12
+            return span
+        # Comma absent, single integer
+        elif len(elem) == 1:
+            return float(elem[0])
+        else:
+            raise Exception("Unexpected format in comma separated years element")
+    except Exception as e:
+        print(repr(e))
+        exit(1)
+
+def convert_years_to_float(df, columns=[]):
+    """Convert comma separated, numeric year format (years, months) to float"""
+
+    if len(columns) == 0: columns = df.columns
+
+    df[columns] = df[columns].map(comma_years_to_float)
+
+    return df
+
+
 def main():
     description = __doc__
     parser = argparse.ArgumentParser(description=description)
@@ -101,6 +137,12 @@ def main():
         nargs='*',
         help="Convert Yes/No values to boolean True/False"
     )
+    parser.add_argument(
+        '-y',
+        '--yearstof',
+        nargs='*',
+        help="Convert comma separated years (years, months) to float"
+    )
 
     args = parser.parse_args()
 
@@ -123,6 +165,8 @@ def main():
         df = remove_whitespace(df, args.removews)
     if args.tobool != None:
         df = yes_no_to_bool(df, args.tobool)
+    if args.yearstof != None:
+        df = convert_years_to_float(df, args.yearstof)
     if args.normcols != None:
         df = normalize_columns(df, args.normcols)
 
