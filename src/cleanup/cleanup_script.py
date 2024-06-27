@@ -12,14 +12,13 @@ def strip_if_str(s):
 
 def remove_whitespace(df, columns=[]):
     """
-    Remove leading/trailing whitespace from the elements of all columns with 
+    Remove leading/trailing whitespace from the values of all columns with 
     string values
     """
     
-    if len(columns) == 0:
-        df = df.map(strip_if_str)
-    else:
-        df[columns] = df[columns].map(strip_if_str)
+    if len(columns) == 0: columns = df.columns
+
+    df[columns] = df[columns].map(strip_if_str)
     
     return df
     
@@ -30,8 +29,7 @@ def normalize_column_name(name):
     new_name = name.strip().lower()
     # This regex removes parentheticals completely
     new_name = re.sub(r' \(.*?\)', r'', new_name)
-    new_name = new_name.replace(" ", "_")
-    new_name = new_name.replace("/", "_or_")
+    new_name = new_name.replace(" ", "_").replace("/", "_or_")
 
     return new_name
 
@@ -57,36 +55,46 @@ def yes_no_to_bool(df, columns=[]):
     Convert 'Yes' and 'No' values to True and False.
     """
 
-    KEY = {"Yes": True, "Yes?": True, "No": False, "No?": False, "unknown": False}
+    # NOTE TO SELF: Double check if removing question marks and the fillna 
+    # are acceptible for our dataset. Consider other options if not or if 
+    # it's conditional.
 
-    if len(columns) == 0:
-        df = df.replace(KEY).fillna(False)
-    else:
-        df[columns] = df[columns].replace(KEY).fillna(False)
+    KEY = {"Yes": True, "Yes?": True, "yes": True, "yes?": True, 
+           "No": False, "No?": False, "no": False, "no?": False,
+           "unknown": False}
+
+    if len(columns) == 0: columns = df.columns
+
+    df[columns] = df[columns].replace(KEY).fillna(False)
 
     return df
 
-def comma_years_to_float(elem):
-    if pd.isna(elem) or elem.lower() == "unknown": return np.nan
-    if isinstance(elem, float) or isinstance(elem, int): return elem
+def comma_years_to_float(val):
+    """
+    Convert comma separated, numeric year formatted value (years, months)
+    to float
+    """
     
-    if "less" in elem.lower():
+    if pd.isna(val) or val.lower() == "unknown": return np.nan
+    if isinstance(val, float) or isinstance(val, int): return val
+    
+    if "less" in val.lower():
         # Temporary because this is useless information that shouldn't even exist,
         # either provide months or nothing at all
-        #return elem
+        #return val
         return np.nan
 
     try:
-        elem = elem.replace(" ", "").split(",")
+        val = val.replace(" ", "").split(",")
         # Comma separation
-        if len(elem) == 2:
-            span = float(elem[0]) + float(elem[1]) / 12
+        if len(val) == 2:
+            span = float(val[0]) + float(val[1]) / 12
             return span
         # Comma absent, single integer
-        elif len(elem) == 1:
-            return float(elem[0])
+        elif len(val) == 1:
+            return float(val[0])
         else:
-            raise Exception("Unexpected format in comma separated years element")
+            raise Exception("Unexpected format in comma separated years value")
     except Exception as e:
         print(repr(e))
         exit(1)
@@ -102,21 +110,21 @@ def convert_years_to_float(df, columns=[]):
 
     return df
 
-def normalize_numeric_elem(elem):
+def normalize_numeric_val(val):
     """
-    Normalize an element to be castable as an int or a float
+    Normalize an value to be castable as an int or a float
     """
 
-    if pd.isna(elem) or isinstance(elem, int) or isinstance(elem, float): return elem
+    if pd.isna(val) or isinstance(val, int) or isinstance(val, float): return val
 
     key = ['unknown', 'unfinished']
-    if elem in key: return np.nan
+    if val in key: return np.nan
 
     # Eliminate leading/trailing whitespace and parentheticals
     # NOTE: Cells with multiple numeric values retain all values. 
     # They need to decide on a single one, but that's how it works for now...
-    elem = elem.strip()
-    return re.sub(r' \(.*?\)', r'', elem).replace("?", "")
+    val = val.strip()
+    return re.sub(r' \(.*?\)', r'', val).replace("?", "")
 
 def normalize_numeric_col(df, columns=[]):
     """
@@ -126,33 +134,32 @@ def normalize_numeric_col(df, columns=[]):
 
     if len(columns) == 0: columns = df.columns
 
-    df[columns] = df[columns].map(normalize_numeric_elem)
+    df[columns] = df[columns].map(normalize_numeric_val)
 
     return df
 
 
 def main():
-    description = __doc__
-    parser = argparse.ArgumentParser(description=description)
+    parser = argparse.ArgumentParser(description=__doc__)
 
     # Add arguments
     parser.add_argument(
         '-i',
         '--input',
-        help="The name of the input file",
+        help="The input file",
         required=True
     )
     parser.add_argument(
         "-o",
         '--output',
-        help="The name of the output file",
+        help="The output file",
     )
     parser.add_argument(
         '-w',
         '--removews',
         '--remove-whitespace',
         nargs='*',
-        help="Remove whitespace from string elements"
+        help="Remove whitespace from string values"
     )
     parser.add_argument(
         '-c',
