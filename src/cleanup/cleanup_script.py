@@ -3,7 +3,7 @@ import numpy as np
 import re
 import argparse
 
-def strip_if_str(s): 
+def _strip_if_str(s): 
     """
     Strip leading/trailing whitespace from a variable if it's a string,
     otherwise return it as is.
@@ -18,11 +18,11 @@ def remove_whitespace(df, columns=[]):
     
     if len(columns) == 0: columns = df.columns
 
-    df[columns] = df[columns].map(strip_if_str)
+    df[columns] = df[columns].map(_strip_if_str)
     
     return df
     
-def normalize_column_name(name):
+def _normalize_column_name(name):
     """
     Convert a single column name into snake case (like_this)
     """
@@ -41,9 +41,9 @@ def normalize_columns(df, columns=[]):
     col_names = df.columns
 
     if len(columns) == 0:
-        col_names = col_names.map(normalize_column_name)
+        col_names = col_names.map(_normalize_column_name)
     else:
-        index_names = [normalize_column_name(name) if name in columns else name for name in col_names]
+        index_names = [_normalize_column_name(name) if name in columns else name for name in col_names]
         col_names = pd.Index(index_names)
     
     df.columns = col_names
@@ -69,7 +69,7 @@ def yes_no_to_bool(df, columns=[]):
 
     return df
 
-def comma_years_to_float(val):
+def _comma_years_to_float(val):
     """
     Convert comma separated, numeric year formatted value (years, months)
     to float
@@ -106,11 +106,11 @@ def convert_years_to_float(df, columns=[]):
 
     if len(columns) == 0: columns = df.columns
 
-    df[columns] = df[columns].map(comma_years_to_float)
+    df[columns] = df[columns].map(_comma_years_to_float)
 
     return df
 
-def normalize_numeric_val(val):
+def _normalize_numeric_val(val):
     """
     Normalize an value to be castable as an int or a float
     """
@@ -134,7 +134,7 @@ def normalize_numeric_col(df, columns=[]):
 
     if len(columns) == 0: columns = df.columns
 
-    df[columns] = df[columns].map(normalize_numeric_val)
+    df[columns] = df[columns].map(_normalize_numeric_val)
 
     return df
 
