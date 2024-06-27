@@ -51,6 +51,20 @@ def normalize_columns(df, columns=[]):
 
     return df
 
+def yes_no_to_bool(df, columns=[]):
+    """
+    Convert 'Yes' and 'No' values to True and False.
+    """
+
+    KEY = {"Yes": True, "Yes?": True, "No": False, "No?": False, "unknown": False}
+
+    if len(columns) == 0:
+        df = df.replace(KEY).fillna(False)
+    else:
+        df[columns] = df[columns].replace(KEY).fillna(False)
+
+    return df
+
 def main():
     description = __doc__
     parser = argparse.ArgumentParser(description=description)
@@ -81,6 +95,12 @@ def main():
         nargs='*',
         help="Normalize column names"
     )
+    parser.add_argument(
+        '-b',
+        '--tobool',
+        nargs='*',
+        help="Convert Yes/No values to boolean True/False"
+    )
 
     args = parser.parse_args()
 
@@ -101,8 +121,11 @@ def main():
     # Execute cleanup functions based on command line arguments
     if args.removews != None:
         df = remove_whitespace(df, args.removews)
+    if args.tobool != None:
+        df = yes_no_to_bool(df, args.tobool)
     if args.normcols != None:
         df = normalize_columns(df, args.normcols)
+
 
     # Export dataset
     # Supported file types: csv, json
