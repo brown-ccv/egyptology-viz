@@ -92,11 +92,41 @@ def comma_years_to_float(elem):
         exit(1)
 
 def convert_years_to_float(df, columns=[]):
-    """Convert comma separated, numeric year format (years, months) to float"""
+    """
+    Convert comma separated, numeric year format (years, months) to float
+    """
 
     if len(columns) == 0: columns = df.columns
 
     df[columns] = df[columns].map(comma_years_to_float)
+
+    return df
+
+def normalize_numeric_elem(elem):
+    """
+    Normalize an element to be castable as an int or a float
+    """
+
+    if pd.isna(elem) or isinstance(elem, int) or isinstance(elem, float): return elem
+
+    key = ['unknown', 'unfinished']
+    if elem in key: return np.nan
+
+    # Eliminate leading/trailing whitespace and parentheticals
+    # NOTE: Cells with multiple numeric values retain all values. 
+    # They need to decide on a single one, but that's how it works for now...
+    elem = elem.strip()
+    return re.sub(r' \(.*?\)', r'', elem).replace("?", "")
+
+def normalize_numeric_col(df, columns=[]):
+    """
+    Normalize a column intended to hold numeric values by converting strings 
+    to either ints or floats.
+    """
+
+    if len(columns) == 0: columns = df.columns
+
+    df[columns] = df[columns].map(normalize_numeric_elem)
 
     return df
 
@@ -125,7 +155,7 @@ def main():
         help="Remove whitespace from string elements"
     )
     parser.add_argument(
-        '-n',
+        '-c',
         '--normcols',
         '--normalize-columns',
         nargs='*',
@@ -142,6 +172,12 @@ def main():
         '--yearstof',
         nargs='*',
         help="Convert comma separated years (years, months) to float"
+    )
+    parser.add_argument(
+        '-n',
+        '--normnum',
+        nargs='*',
+        help='Normalize numeric columns'
     )
 
     args = parser.parse_args()
@@ -167,9 +203,10 @@ def main():
         df = yes_no_to_bool(df, args.tobool)
     if args.yearstof != None:
         df = convert_years_to_float(df, args.yearstof)
+    if args.normnum != None:
+        df = normalize_numeric_col(df, args.normnum)
     if args.normcols != None:
         df = normalize_columns(df, args.normcols)
-
 
     # Export dataset
     # Supported file types: csv, json
