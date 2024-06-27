@@ -179,6 +179,12 @@ def main():
         nargs='*',
         help='Normalize numeric columns'
     )
+    parser.add_argument(
+        '-d',
+        '--dropblank',
+        nargs=1,
+        help='Drop blank rows (identified by NA values in the given column)'
+    )
 
     args = parser.parse_args()
 
@@ -205,6 +211,8 @@ def main():
         df = convert_years_to_float(df, args.yearstof)
     if args.normnum != None:
         df = normalize_numeric_col(df, args.normnum)
+    if args.dropblank:
+        df = df.dropna(subset=args.dropblank)
     if args.normcols != None:
         df = normalize_columns(df, args.normcols)
 
