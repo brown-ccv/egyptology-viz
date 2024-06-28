@@ -227,7 +227,7 @@ def main():
     # Supported file types: csv, json
     outpath = args.output if args.output else "out.json"
     outtype = outpath.split(".")
-    if len(intype) < 2:
+    if len(outtype) < 2:
         raise Exception("File name missing extension")
     outtype = outtype[-1].lower()
 
