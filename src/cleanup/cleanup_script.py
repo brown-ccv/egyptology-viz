@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import re
 import argparse
+import pathlib
 
 def _strip_if_str(s): 
     """
@@ -197,14 +198,12 @@ def main():
 
     # Read the data into a dataframe
     # Supported file types: csv, json
-    intype = args.input.split(".")
-    if len(intype) < 2:
-        raise Exception("File name missing extension")
-    intype = intype[-1].lower()
+    intype = pathlib.Path(args.input).suffix
+    if not intype: raise Exception("Input file name missing extension")
 
-    if intype == "json":
+    if intype == ".json":
         df = pd.read_json(args.input)
-    elif intype == "csv":
+    elif intype == ".csv":
         df = pd.read_csv(args.input)
     else:
         raise Exception("Unsupported input file type or file name missing extension. Supported file types: csv, json")
@@ -225,15 +224,13 @@ def main():
 
     # Export dataset
     # Supported file types: csv, json
-    outpath = args.output if args.output else "out.json"
-    outtype = outpath.split(".")
-    if len(outtype) < 2:
-        raise Exception("File name missing extension")
-    outtype = outtype[-1].lower()
+    outpath = args.output if args.output else "out.csv"
+    outtype = pathlib.Path(outpath).suffix
+    if not outtype: raise Exception("Output file name missing extension")
 
-    if outtype == "json":
+    if outtype == ".json":
         df.to_json(outpath, orient="columns", indent=2)
-    elif outtype == "csv":
+    elif outtype == ".csv":
         df.to_csv(outpath, index=False, header=True)
     else:
         raise Exception("Unsupported output file type or file name missing extension. Supported file types: csv, json")
