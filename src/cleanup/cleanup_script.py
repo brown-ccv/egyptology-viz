@@ -160,38 +160,38 @@ def main():
         '--removews',
         '--remove-whitespace',
         nargs='*',
-        help="Remove whitespace from string values"
+        help="Remove whitespace from string values. Operate on all columns by default, or those specified by the user."
     )
     parser.add_argument(
         '-c',
         '--normcols',
         '--normalize-columns',
         nargs='*',
-        help="Normalize column names"
+        help="Normalize column names. Operate on all columns by default, or those specified by the user."
     )
     parser.add_argument(
         '-b',
         '--tobool',
         nargs='*',
-        help="Convert Yes/No values to boolean True/False"
+        help="Convert Yes/No values to boolean True/False. Operate on all columns by default, or those specified by the user."
     )
     parser.add_argument(
         '-y',
         '--yearstof',
         nargs='*',
-        help="Convert comma separated years (years, months) to float"
+        help="Convert comma separated years (years, months) to float. Operate on all columns by default, or those specified by the user."
     )
     parser.add_argument(
         '-n',
         '--normnum',
         nargs='*',
-        help='Normalize numeric columns'
+        help='Normalize numeric columns. Operate on all columns by default, or those specified by the user.'
     )
     parser.add_argument(
         '-d',
         '--dropblank',
         nargs=1,
-        help='Drop blank rows (identified by NA values in the given column)'
+        help='Drop blank (NA) rows in the specified column.'
     )
 
     args = parser.parse_args()
