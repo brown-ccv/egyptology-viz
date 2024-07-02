@@ -55,3 +55,29 @@ def test_yes_no_bool_selective():
     desired = pd.DataFrame({'A': [True, True, True, True, False],
                             'B': ['No', 'No?', 'no', 'no?', 'unknown']})
     assert yes_no_to_bool(df, ['A']).equals(desired)
+
+def test_years_to_float_default():
+    """
+    Test the conversion of comma-separated years (years, months) to floats 
+    for values across all columns
+
+    Example: 1, 3 => 1.25
+    """
+    df = pd.DataFrame({'A': ['1, 3', '2,6', ' 3 , 11'],
+                       'B': ['5,09', '1 , 1', ' 1 , 1 ']})
+    desired = pd.DataFrame({'A': [1.25, 2.5, 3.9166666666666666],
+                            'B': [5.75, 1.08333333333333333, 1.08333333333333333]})
+    assert convert_years_to_float(df).equals(desired)
+
+def test_years_to_float_selective():
+    """
+    Test the conversion of comma-separated years (years, months) to floats 
+    for values across specified columns
+
+    Example: 1, 3 => 1.25
+    """
+    df = pd.DataFrame({'A': ['1, 3', '2,6', ' 3 , 11'],
+                       'B': ['5,09', '1 , 1', ' 1 , 1 ']})
+    desired = pd.DataFrame({'A': [1.25, 2.5, 3.9166666666666666],
+                            'B': ['5,09', '1 , 1', ' 1 , 1 ']})
+    assert convert_years_to_float(df, ['A']).equals(desired)
