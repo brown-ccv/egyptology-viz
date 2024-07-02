@@ -81,3 +81,23 @@ def test_years_to_float_selective():
     desired = pd.DataFrame({'A': [1.25, 2.5, 3.9166666666666666],
                             'B': ['5,09', '1 , 1', ' 1 , 1 ']})
     assert convert_years_to_float(df, ['A']).equals(desired)
+
+def test_normal_num_col_default():
+    """
+    Test the normalization of numeric values across all columns
+    """
+    df = pd.DataFrame({'A': [1, 2.5, 'unknown', '43?'],
+                       'B': ['1 (I think??)', '  2.2 (perhaps)  ', 'unfinished', np.nan]})
+    desired = pd.DataFrame({'A': [1, 2.5, np.nan, '43'],
+                            'B': ['1', '2.2', np.nan, np.nan]})
+    assert normalize_numeric_col(df).equals(desired)
+
+def test_normal_num_col_selective():
+    """
+    Test the normalization of numeric values across specified columns
+    """
+    df = pd.DataFrame({'A': [1, 2.5, 'unknown', '43?'],
+                       'B': ['1 (I think??)', '  2.2 (perhaps)  ', 'unfinished', np.nan]})
+    desired = pd.DataFrame({'A': [1, 2.5, 'unknown', '43?'],
+                            'B': ['1', '2.2', np.nan, np.nan]})
+    assert normalize_numeric_col(df, ['B']).equals(desired)
