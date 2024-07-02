@@ -153,6 +153,9 @@ def main():
     parser.add_argument(
         "-o",
         '--output',
+        nargs='?',
+        const=1,
+        default='out.csv',
         help="The output file",
     )
     parser.add_argument(
@@ -224,14 +227,13 @@ def main():
 
     # Export dataset
     # Supported file types: csv, json
-    outpath = args.output if args.output else "out.csv"
-    outtype = pathlib.Path(outpath).suffix
+    outtype = pathlib.Path(args.output).suffix
     if not outtype: raise Exception("Output file name missing extension")
 
     if outtype == ".json":
-        df.to_json(outpath, orient="columns", indent=2)
+        df.to_json(args.output, orient="columns", indent=2)
     elif outtype == ".csv":
-        df.to_csv(outpath, index=False, header=True)
+        df.to_csv(args.output, index=False, header=True)
     else:
         raise Exception("Unsupported output file type or file name missing extension. Supported file types: csv, json")
 
