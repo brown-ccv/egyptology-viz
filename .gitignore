@@ -164,5 +164,3 @@ cython_debug/
 # macos nonsense
 .DS_Store
 
-# Jupyter notebook directory
-Notebooks/
