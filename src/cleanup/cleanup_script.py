@@ -74,6 +74,8 @@ def _comma_years_to_float(val):
     """
     Convert comma separated, numeric year formatted value (years, months)
     to float
+
+    Example: 1, 3 => 1.25
     """
     
     if pd.isna(val) or val.lower() == "unknown": return np.nan
@@ -103,6 +105,8 @@ def _comma_years_to_float(val):
 def convert_years_to_float(df, columns=[]):
     """
     Convert comma separated, numeric year format (years, months) to float
+
+    Example: 1, 3 => 1.25
     """
 
     if len(columns) == 0: columns = df.columns
