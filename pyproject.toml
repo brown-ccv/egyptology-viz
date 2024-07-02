@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "egyptology-visualization-project"
+version = "0.0.1"
+description = "This project aims to implement a tool to visualize the evolution of pyramid building during the Pyramid Age"
+authors = ["Jose Harvey <jose_harvey@brown.edu>"]
+license = "MIT"
+readme = "README.md"
+classifiers = [
+	"Programming Language :: Python :: 3",
+	"Operating System :: OS Independent"
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+
+pandas = "^2.2.2"
+seaborn = "^0.13.2"
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+#[tool.poetry.urls]
+#Homepage = "https://github.com/brown-ccv/egyptology-viz"
+#Issues = "https://github.com/brown-ccv/egyptology-viz/issues"
