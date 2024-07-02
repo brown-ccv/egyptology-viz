@@ -17,7 +17,7 @@ def remove_whitespace(df, columns=[]):
     string values
     """
     
-    if len(columns) == 0: columns = df.columns
+    if not columns: columns = df.columns
 
     df[columns] = df[columns].map(_strip_if_str)
     
@@ -41,7 +41,7 @@ def normalize_columns(df, columns=[]):
 
     col_names = df.columns
 
-    if len(columns) == 0:
+    if not columns:
         col_names = col_names.map(_normalize_column_name)
     else:
         index_names = [_normalize_column_name(name) if name in columns else name for name in col_names]
@@ -64,7 +64,7 @@ def yes_no_to_bool(df, columns=[]):
            "No": False, "No?": False, "no": False, "no?": False,
            "unknown": False}
 
-    if len(columns) == 0: columns = df.columns
+    if not columns: columns = df.columns
 
     df[columns] = df[columns].replace(KEY).fillna(False)
 
