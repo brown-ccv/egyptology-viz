@@ -8,6 +8,12 @@ def _strip_if_str(s):
     """
     Strip leading/trailing whitespace from a variable if it's a string,
     otherwise return it as is.
+
+    >>> _strip_if_str('  s   ')
+    's'
+
+    >>> _strip_if_str(1)
+    1
     """
     return s.strip() if isinstance(s, str) else s
 
@@ -26,6 +32,9 @@ def remove_whitespace(df, columns=[]):
 def _normalize_column_name(name):
     """
     Convert a single column name into snake case (like_this)
+
+    >>> _normalize_column_name(' THIS is a test/trial (I think)  ')
+    'this_is_a_test_or_trial'
     """
     new_name = name.strip().lower()
     # This regex removes parentheticals completely
@@ -60,6 +69,8 @@ def yes_no_to_bool(df, columns=[]):
     # are acceptible for our dataset. Consider other options if not or if 
     # it's conditional.
 
+    # TODO: Replace "replace" with map or something
+
     KEY = {"Yes": True, "Yes?": True, "yes": True, "yes?": True, 
            "No": False, "No?": False, "no": False, "no?": False,
            "Unknown": False, "unknown": False}
@@ -76,6 +87,12 @@ def _comma_years_to_float(val):
     to float
 
     Example: 1, 3 => 1.25
+
+    >>> _comma_years_to_float('1,3')
+    1.25
+
+    >>> _comma_years_to_float('1')
+    1.0
     """
     
     if pd.isna(val) or val.lower() == "unknown": return np.nan
@@ -109,7 +126,7 @@ def convert_years_to_float(df, columns=[]):
     Example: 1, 3 => 1.25
     """
 
-    if len(columns) == 0: columns = df.columns
+    if not columns: columns = df.columns
 
     df[columns] = df[columns].map(_comma_years_to_float)
 
@@ -118,6 +135,18 @@ def convert_years_to_float(df, columns=[]):
 def _normalize_numeric_val(val):
     """
     Normalize an value to be castable as an int or a float
+
+    >>> _normalize_numeric_val(1)
+    1
+
+    >>> _normalize_numeric_val(2.0)
+    2.0
+
+    >>> _normalize_numeric_val('  3.3?   ')
+    '3.3'
+
+    >>> _normalize_numeric_val('1.0 (presumed)')
+    '1.0'
     """
 
     if pd.isna(val) or isinstance(val, int) or isinstance(val, float): return val
@@ -137,7 +166,7 @@ def normalize_numeric_col(df, columns=[]):
     to either ints or floats.
     """
 
-    if len(columns) == 0: columns = df.columns
+    if not columns: columns = df.columns
 
     df[columns] = df[columns].map(_normalize_numeric_val)
 
