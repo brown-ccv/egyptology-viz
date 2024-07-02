@@ -243,14 +243,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-''' Tests for pytest '''
-def test_normcols_default():
-    df = pd.DataFrame({'A (or something)': [1, 2, 3], 'B and C/D': [3, 4, 5]})
-    desired = pd.Index(['a', 'b_and_c_or_d'])
-    assert normalize_columns(df).columns.equals(desired)
-
-def test_normcols_selective():
-    df = pd.DataFrame({'A': [1, 2, 3], 'B': [3, 4, 5]})
-    desired = pd.Index(['A', 'b'])
-    assert normalize_columns(df, ['B']).columns.equals(desired)

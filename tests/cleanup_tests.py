@@ -1,6 +1,4 @@
-import sys
-from cleanup_script import *
-# Awaiting merge of the package branch before fixing this test script
+from cleanup.cleanup_script import *
 
 def test_normcols_default():
     """

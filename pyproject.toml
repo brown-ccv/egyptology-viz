@@ -9,12 +9,14 @@ classifiers = [
 	"Programming Language :: Python :: 3",
 	"Operating System :: OS Independent"
 ]
+packages = [{ include = "cleanup", from = "src" }]
 
 [tool.poetry.dependencies]
 python = ">=3.9"
 
 pandas = "^2.2.2"
 seaborn = "^0.13.2"
+pytest = "^8.2.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
