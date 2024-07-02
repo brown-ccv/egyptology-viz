@@ -62,7 +62,7 @@ def yes_no_to_bool(df, columns=[]):
 
     KEY = {"Yes": True, "Yes?": True, "yes": True, "yes?": True, 
            "No": False, "No?": False, "no": False, "no?": False,
-           "unknown": False}
+           "Unknown": False, "unknown": False}
 
     if not columns: columns = df.columns
 

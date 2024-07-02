@@ -18,7 +18,7 @@ def test_normcols_selective():
 
 def test_remove_whitespace_default():
     """
-    Test leading/trailing whitespace removal across all values
+    Test leading/trailing whitespace removal on values across all columns
     """
     df = pd.DataFrame({'A': ['  one', 'two  ', ' three  '],
                        'B': ['four', ' five five ', 'six']})
@@ -35,3 +35,23 @@ def test_remove_whitespace_selective():
     desired = pd.DataFrame({'A': ['one', 'two', 'three'],
                             'B': ['four', ' five five ', 'six']})
     assert remove_whitespace(df, ['A']).equals(desired)
+
+def test_yes_no_bool_default():
+    """
+    Test the conversion of Yes/No values to True/False across all columns
+    """
+    df = pd.DataFrame({'A': ['Yes', 'Yes?', 'yes', 'yes?', 'Unknown'],
+                       'B': ['No', 'No?', 'no', 'no?', 'unknown']})
+    desired = pd.DataFrame({'A': [True, True, True, True, False],
+                            'B': [False, False, False, False, False]})
+    assert yes_no_to_bool(df).equals(desired)
+
+def test_yes_no_bool_selective():
+    """
+    Test the conversion of Yes/No values to True/False on specific columns
+    """
+    df = pd.DataFrame({'A': ['Yes', 'Yes?', 'yes', 'yes?', 'Unknown'],
+                       'B': ['No', 'No?', 'no', 'no?', 'unknown']})
+    desired = pd.DataFrame({'A': [True, True, True, True, False],
+                            'B': ['No', 'No?', 'no', 'no?', 'unknown']})
+    assert yes_no_to_bool(df, ['A']).equals(desired)
