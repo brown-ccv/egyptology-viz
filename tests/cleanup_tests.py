@@ -65,8 +65,8 @@ def test_years_to_float_default():
     """
     df = pd.DataFrame({'A': ['1, 3', '2,6', ' 3 , 11'],
                        'B': ['5,09', '1 , 1', ' 1 , 1 ']})
-    desired = pd.DataFrame({'A': [1.25, 2.5, 3.9166666666666666],
-                            'B': [5.75, 1.08333333333333333, 1.08333333333333333]})
+    desired = pd.DataFrame({'A': [1.25, 2.5, 3.917],
+                            'B': [5.75, 1.083, 1.083]})
     assert convert_years_to_float(df).equals(desired)
 
 def test_years_to_float_selective():
@@ -78,7 +78,7 @@ def test_years_to_float_selective():
     """
     df = pd.DataFrame({'A': ['1, 3', '2,6', ' 3 , 11'],
                        'B': ['5,09', '1 , 1', ' 1 , 1 ']})
-    desired = pd.DataFrame({'A': [1.25, 2.5, 3.9166666666666666],
+    desired = pd.DataFrame({'A': [1.25, 2.5, 3.917],
                             'B': ['5,09', '1 , 1', ' 1 , 1 ']})
     assert convert_years_to_float(df, ['A']).equals(desired)
 

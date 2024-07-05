@@ -84,7 +84,7 @@ def yes_no_to_bool(df, columns=[]):
 def _comma_years_to_float(val):
     """
     Convert comma separated, numeric year formatted value (years, months)
-    to float
+    to year plus fraction of years as float.
 
     Example: 1, 3 => 1.25
 
@@ -108,7 +108,7 @@ def _comma_years_to_float(val):
         val = val.replace(" ", "").split(",")
         # Comma separation
         if len(val) == 2:
-            span = float(val[0]) + float(val[1]) / 12
+            span = round(float(val[0]) + float(val[1]) / 12, 3)
             return span
         # Comma absent, single integer
         elif len(val) == 1:
