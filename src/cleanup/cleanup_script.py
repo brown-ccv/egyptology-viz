@@ -196,7 +196,6 @@ def commands_from_file(args):
         if getattr(args, command, None) == None:
             setattr(args, command, columns)
 
-    file.close()
     return args
 
 
