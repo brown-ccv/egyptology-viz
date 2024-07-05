@@ -8,86 +8,114 @@
 
 ### Variable Descriptions:
 
-1.  **Ruler**
+1.  **Pyramid Owner**
 
     -   Type: Categorical
-    -   Description:
-2.  **Gender**
+    -   Description: The name of the individual for whom the pyramid was made.
+2.  **Pyramid Complex**
+    
+    -   Type: Categorical
+    -   Description: The complex that the pyramid is located in.
+3.  **Royal Status**
+    
+    -   Type: Categorical
+    -   Description: The royal status of the pyramid owner.
+4.  **Daughter Of**
+    
+    -   Type: Categorical
+    -   Description: The father of the given queen.
+5.  **Royal Mother Title**
+    
+    -   Type: Categorical
+    -   Description: Whether or not a queen bore the title of "Royal Mother".
+6.  **Likely Wife**
     
     -   Type: Categorical
     -   Description: 
-3.  **Start of Reign**
+7.  **Wife Title**
+    
+    -   Type: Categorical
+    -   Description: 
+8.  **Vizier**
+    
+    -   Type: Categorical
+    -   Description: Whether or not a pyramid owner was a vizier.
+9.  **Regent**
+    
+    -   Type: Categorical
+    -   Description: Whether or not a pyramid owner was a regent.
+10.  **Relationship to King**
+    
+    -   Type: Categorical
+    -   Description: A pyramid owner's relationship(s) to one or more kings.
+11.  **Start of Reign**
     
     -   Type: Numeric
-    -   Description:
-4.  **End of Reign**
+    -   Description: The year marking the start of a king's reign.
+12.  **End of Reign**
     
     -   Type: Numeric
-    -   Description: 
-5.  **Length of Reign**
+    -   Description: The year marking the end of a king's reign.
+13.  **Length of Reign**
     
     -   Type: Numeric
-    -   Description: 
-6.  **Period**
+    -   Description: The total length of a king's reign.
+14.  **Period**
     
     -   Type: Categorical
-    -   Description: 
-7.  **Dynasty**
-    
-    -   Type: Categorical
-    -   Description: 
-8.  **Title**
-    
-    -   Type: Categorical
-    -   Description: 
-9.  **Pyramid Texts**
-    
-    -   Type: Categorical
-    -   Description: 
-10.  **Site/Location**
-    
-    -   Type: Categorical
-    -   Description: 
-11.  **Orientation**
-    
-    -   Type: Categorical
-    -   Description: 
-12.  **Exterior Material**
-    
-    -   Type: Categorical
-    -   Description: 
-13.  **State of Completion**
-    
-    -   Type: Categorical
-    -   Description: 
-14.  **Superstructure Type**
-    
-    -   Type: Categorical
-    -   Description: 
-15.  **Height**
+    -   Description: The period within which the pyramid was built.
+15.  **Dynasty**
     
     -   Type: Numeric
-    -   Description: Height of the pyramid in meters.
-16.  **Length**
-    
-    -   Type: Numeric
-    -   Description: Length of the base of the pyramid in meters.
-17.  **Width**
-    
-    -   Type: Numeric
-    -   Description: Width of the base of the pyramid in meters.
-18.  **Slope**
-    
-    -   Type: Numeric
-    -   Description: Slope of the pyramid in degrees.
-19.  **Enclosure Wall Dimensions**
-    
-    -   Type: Numeric
-    -   Description: Dimensions of the enclosure wall surrounding the pyramid in meters. (Note, should be split into three columns like the pyramid dimensions)
-20.  **Notes**
+    -   Description: The dynasty within which the pyramid was built.
+16.  **Title**
     
     -   Type: Categorical
-    -   Description: Miscellaneous notes about the pyramid.
+    -   Description: The name of the pyramid.
+17.  **Pyramid Texts**
+    
+    -   Type: Categorical
+    -   Description: Whether or not texts were present at the pyramid.
+18.  **Site or Location**
+    
+    -   Type: Categorical
+    -   Description: The site/location of the pyramid.
+19.  **Orientation**
+    
+    -   Type: Categorical
+    -   Description: The cardinal orientation of the pyramid.
+20.  **Casing**
+    
+    -   Type: Categorical
+    -   Description: The material(s) used in the pyramid's casing.
+21.  **State of Completion**
+
+    -   Type: Categorical
+    -   Description: The pyramid's state of completion.
+22.  **Superstructure Type**
+
+    -   Type: Categorical
+    -   Description: The type of the structure.
+23.  **Height**
+
+    -   Type: Numeric
+    -   Description: The height of the structure.
+24.  **Length**
+
+    -   Type: Numeric
+    -   Description: The length of the structure.
+25.  **Width**
+
+    -   Type: Numeric
+    -   Description: The width of the strucutre.
+26.  **Angle**
+
+    -   Type: Numeric
+    -   Description: The slope of the structure.
+27.  **Notes**
+
+    -   Type: Categorical
+    -   Description: Miscellaneous notes about the structure or research relating to it.
 
 
 ----------
