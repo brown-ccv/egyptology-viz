@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />   <!--It is necessary to use the UTF-8 encoding with plotly graphics to get e.g. negative signs to render correctly -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
+    </head>
+
+    <body>
+        <h1>Figure 1</h1>
+        {{ confirmed_count }}
+        <p>Figure 1 description</p>
+
+        <h1>Figure 2</h1>
+        {{ dynasty_count }}
+        <p>Figure 2 description</p>
+
+        <h1>Figure 3</h1>
+        {{ grouped_heights }}
+        <p>Figure 3 description</p>
+
+        <h1>Figure 4</h1>
+        {{ line_heights }}
+        <p>Figure 4 description</p>
+    </body>
+</html>
