@@ -172,6 +172,32 @@ def normalize_numeric_col(df, columns=[]):
 
     return df
 
+def commands_from_file(args):
+    """
+    Read commands and their arguments from a file.
+
+    Expected file format: 
+    - Each command on its own line
+    - Each line's values are separated by commas (csv file ideal)
+    - The first value of each line is the command, the rest are its arguments (if any)
+    """
+
+    filename = args.commandfile
+
+    command_lines = []
+    with open(filename, 'r') as file:
+        for line in file:
+            line = line.rstrip('\n')
+            command_lines.append(line.split(','))
+    
+    for line in command_lines:
+        command = line[0]
+        columns = line[1:]
+        if getattr(args, command, None) == None:
+            setattr(args, command, columns)
+
+    return args
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -229,6 +255,10 @@ def main():
         nargs=1,
         help='Drop blank (NA) rows in the specified column.'
     )
+    parser.add_argument(
+        '--commandfile',
+        help="Use commands and arguments from a comma separated file. Manually entered commands will override those in the file."
+    )
 
     args = parser.parse_args()
 
@@ -245,6 +275,8 @@ def main():
         raise Exception("Unsupported input file type or file name missing extension. Supported file types: csv, json")
 
     # Execute cleanup functions based on command line arguments
+    if args.commandfile != None:
+        args = commands_from_file(args)
     if args.removews != None:
         df = remove_whitespace(df, args.removews)
     if args.tobool != None:
