@@ -75,7 +75,8 @@ def yes_no_to_bool(df, columns=[]):
            "No": False, "No?": False, "no": False, "no?": False,
            "Unknown": False, "unknown": False}
 
-    if not columns: columns = df.columns
+    if not columns: 
+       columns = df.columns
 
     df[columns] = df[columns].replace(KEY).fillna(False)
 
