@@ -23,7 +23,8 @@ def remove_whitespace(df, columns=[]):
     string values
     """
     
-    if not columns: columns = df.columns
+    if not columns: 
+         columns = df.columns
 
     df[columns] = df[columns].map(_strip_if_str)
     
