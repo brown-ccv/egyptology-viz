@@ -169,7 +169,8 @@ def normalize_numeric_col(df, columns=[]):
     to either ints or floats.
     """
 
-    if not columns: columns = df.columns
+    if not columns: 
+       columns = df.columns
 
     df[columns] = df[columns].map(_normalize_numeric_val)
 
