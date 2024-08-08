@@ -126,7 +126,8 @@ def convert_years_to_float(df, columns=[]):
     Example: 1, 3 => 1.25
     """
 
-    if not columns: columns = df.columns
+    if not columns: 
+       columns = df.columns
 
     df[columns] = df[columns].map(_comma_years_to_float)
 
