@@ -1,16 +1,20 @@
+# Pyramid height by pyramid complex histogram without timeline
+
 import pandas as pd
 import numpy as np
 import plotly.express as px
 from plotly import graph_objects as go
 
+'''
+    Dataframe creation/manipulation
+'''
+
 # Import the pyramid dataset
-df = pd.DataFrame(pd.read_csv("../../assets/normalized_pyramid_data.csv"))
+df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
 
-
+# Drop pyramids with no known complex
 key = ['unknown', 'pyramid?']
 complexes = df[~df['pyramid_complex'].isin(key)]
-
-# Pyramid height by pyramid complex histogram without timeline
 
 # Fill in 'start_of_reign' for every row where it is NA with the year of the respective King's start of reign
 # TODO: Add this functionality to the cleanup script
@@ -25,7 +29,7 @@ temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574   # Th
 temp.dropna(subset='height', inplace=True)
 temp.sort_values(by='start_of_reign', ascending=False, inplace=True)
 
-# Getting the height column to be numeric
+# Get the height column to be interpreted as numeric
 def average_of_two(val):
     if isinstance(val, int) or isinstance(val, float) or pd.isna(val): return val
 
@@ -34,18 +38,23 @@ def average_of_two(val):
     nums = val.split('-')
     if len(nums) == 1: return float(nums[0])
     return (float(nums[0]) + float(nums[1])) / 2
-
 temp['height'] = temp['height'].map(average_of_two).astype(float)
-tl = temp[['pyramid_complex', 'pyramid_owner', 'start_of_reign', 'end_of_reign', 'length_of_reign', 'height', 'royal_status', 'relationship_to_king', 'title', 'pyramid_texts', 'state_of_completion']]
+
+# Create a new dataframe with a subset of data that is needed for the plot
+tl = temp[['pyramid_complex', 'pyramid_owner', 'start_of_reign', 'end_of_reign',
+           'length_of_reign', 'height', 'royal_status', 'relationship_to_king',
+           'title', 'pyramid_texts', 'state_of_completion']]
 # Omit Khentkaus I (Queen, not at a King's complex)
 tl = tl.drop(tl[tl['pyramid_complex'] == 'Khentkaus I'].index)
 
-# Plotly stuff (new version)
+''' 
+    Plotly portion
+'''
+
 # Create list of colors for the bars to indicate royal status
 def setColor(y):
-    if y == "King": return '#636EFA'     # default blue
-    elif y == "Queen": return '#EF553B'  # default red
-
+    if y == "King": return '#636EFA'     # default plotly blue
+    elif y == "Queen": return '#EF553B'  # default plotly red
 colors = [setColor(y) for y in tl['royal_status'].values]
 
 # Graph objects histogram
@@ -74,6 +83,7 @@ horizontal = go.Figure(go.Bar(
         'Pyramid Texts?: %{customdata[2]}'
         '<extra></extra>'
     ])))
+
 # Create dummy traces for the legend
 horizontal.add_trace(
     go.Bar(
@@ -114,6 +124,7 @@ horizontal.add_trace(
         marker_line_width=2.5
     )
 )
+
 # Final plot adjustments
 horizontal.update_layout(
     title = "Height of Pyramids By Complex",
@@ -133,4 +144,4 @@ horizontal.update_layout(
         x = 0.4,
         orientation='h'
     ))
-horizontal.write_image('test.png')
+horizontal.write_image('images/jose-total-complex-height-by-status-bar.png')
