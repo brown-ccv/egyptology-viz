@@ -1,6 +1,12 @@
+# Queen pyramid height with attributes scatterplot
+
 import pandas as pd
 import numpy as np
 import plotly.express as px
+
+'''
+    Dataframe creation/manipulation
+'''
 
 # Import the dataset
 df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
@@ -64,7 +70,10 @@ melted_queens = queen_data.melt(ignore_index=False,
 # Select only those rows that correspond to some category applying to a given queen
 melted_truth = melted_queens[melted_queens['value'] == True]
 
-# Create the plot
+''' 
+    Plotly portion
+'''
+
 fig = px.strip(
     melted_truth,
     x = 'title',
