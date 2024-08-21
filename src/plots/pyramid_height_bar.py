@@ -25,10 +25,20 @@ for comp in unique_comp:
     temp[temp['pyramid_complex'] == comp]['start_of_reign'] = temp[temp['pyramid_complex'] == comp]['start_of_reign'].replace(np.nan, start)
 
 temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574   # This had to be done to get it in the correct order (value was missing)
+
+# Drop rows with no pyramid height value
 temp.dropna(subset='height', inplace=True)
+# Sort all remaining rows in chronological order
 temp.sort_values(by='start_of_reign', ascending=False, inplace=True)
 
-# Get the height column to be interpreted as numeric
+''' 
+Get the height column to be interpreted as numeric by taking the average of 
+values containing two height estimates, or by using the projected heights 
+as opposed to actual heights, as directed by Christelle during a meeting.
+
+Input: String, int, or float representing a pyramid dimension value
+Output: Numeric type (likely float, possibly int) representing the pyramid dimension value
+'''
 def average_of_two(val):
     if isinstance(val, int) or isinstance(val, float) or pd.isna(val): return val
 
@@ -83,7 +93,7 @@ horizontal = go.Figure(go.Bar(
         '<extra></extra>'
     ])))
 
-# Create dummy traces for the legend
+# Create dummy traces for the legend because plotly wouldn't do it automatically
 horizontal.add_trace(
     go.Bar(
     x=["Dummy"],
@@ -143,4 +153,6 @@ horizontal.update_layout(
         x = 0.4,
         orientation='h'
     ))
+
+# Output plot as a png image
 horizontal.write_image('images/jose-total-complex-height-by-status-bar.png')
