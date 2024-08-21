@@ -2,8 +2,10 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
+# Import the dataset
 df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
 
+# Drop pyramids with no known complex
 key = ['unknown', 'pyramid?']
 complexes = df[~df['pyramid_complex'].isin(key)]
 
@@ -17,10 +19,20 @@ for comp in unique_comp:
     temp[temp['pyramid_complex'] == comp]['start_of_reign'] = temp[temp['pyramid_complex'] == comp]['start_of_reign'].replace(np.nan, start)
 
 temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574   # This had to be done to get it in the correct order (value was missing)
+
+# Drop rows with no pyramid height value
 temp.dropna(subset='height', inplace=True)
+# Sort all remaining rows in chronological order
 temp.sort_values(by='start_of_reign', ascending=False, inplace=True)
 
-# Getting the height column to be numeric
+''' 
+Get the height column to be interpreted as numeric by taking the average of 
+values containing two height estimates, or by using the projected heights 
+as opposed to actual heights, as directed by Christelle during a meeting.
+
+Input: String, int, or float representing a pyramid dimension value
+Output: Numeric type (likely float, possibly int) representing the pyramid dimension value
+'''
 def average_of_two(val):
     if isinstance(val, int) or isinstance(val, float) or pd.isna(val): return val
 
@@ -32,18 +44,27 @@ def average_of_two(val):
 
 temp['height'] = temp['height'].map(average_of_two).astype(float)
 
+# Create a new dataframe with a subset of data that is needed for the plot
 queens = temp[temp['royal_status'] == 'Queen']
-queen_data = queens[['pyramid_owner', 'dynasty', 'royal_status', 'daughter_of', 'royal_mother_title', 'likely_wife', 'wife_title', 'vizier', 'regent', 'relationship_to_king', 'height', 'title']]
+queen_data = queens[['pyramid_owner', 'dynasty', 'royal_status', 'daughter_of', 
+                     'royal_mother_title', 'likely_wife', 'wife_title', 'vizier', 
+                     'regent', 'relationship_to_king', 'height', 'title']]
 queen_data['dynasty'] = queen_data['dynasty'].astype(int)
 
-# Reshape queen data from wide to long (Binary categories get put into a new column, each category applied to a specific queen given a row, with the status of that category in another column)
-
-melted_queens = queen_data.melt(ignore_index=False, id_vars=['dynasty', 'height', 'pyramid_owner', 'relationship_to_king', 'daughter_of', 'title'], value_vars=['vizier', 'regent', 'royal_mother_title', 'likely_wife', 'wife_title']).reset_index()
-
-# Strip scatter plot version 1
-
+'''
+Reshape queen data from wide to long (Binary categories get put into a new column, 
+each category applied to a specific queen given a row, with the status of that 
+category in another column)
+'''
+melted_queens = queen_data.melt(ignore_index=False, 
+                                id_vars=['dynasty', 'height', 'pyramid_owner', 
+                                         'relationship_to_king', 'daughter_of', 'title'], 
+                                value_vars=['vizier', 'regent', 'royal_mother_title', 
+                                            'likely_wife', 'wife_title']).reset_index()
+# Select only those rows that correspond to some category applying to a given queen
 melted_truth = melted_queens[melted_queens['value'] == True]
 
+# Create the plot
 fig = px.strip(
     melted_truth,
     x = 'title',
@@ -71,4 +92,5 @@ new_names = {'vizier': 'Vizier',
              'wife_title': 'Wife Title'}
 fig.for_each_trace(lambda t: t.update(name = new_names[t.name]))
 
+# Output the plot as a png image
 fig.write_image("images/jose-queen-height-by-status-scatter.png")
