@@ -15,16 +15,23 @@ df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
 key = ['unknown', 'pyramid?']
 complexes = df[~df['pyramid_complex'].isin(key)]
 
-# Fill in 'start_of_reign' for every row where it is NA with the year of the respective King's start of reign
-# TODO: Add this functionality to the cleanup script
+'''
+Fill in 'start_of_reign' for every row where it is NA with the year of the 
+respective King's start of reign.
+
+TODO: Add this functionality to the cleanup script.
+'''
 unique_comp = complexes['pyramid_complex'].unique()
 temp = df
 
 for comp in unique_comp:
     start = temp[temp['pyramid_complex'] == comp]['start_of_reign'].max()
-    temp[temp['pyramid_complex'] == comp]['start_of_reign'] = temp[temp['pyramid_complex'] == comp]['start_of_reign'].replace(np.nan, start)
+    temp[temp['pyramid_complex'] == comp]['start_of_reign'].replace(np.nan, 
+                                                                    start, 
+                                                                    inplace=True)
 
-temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574   # This had to be done to get it in the correct order (value was missing)
+# This had to be done to get it in the correct order (value was missing)
+temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574
 
 # Drop rows with no pyramid height value
 temp.dropna(subset='height', inplace=True)
@@ -37,10 +44,12 @@ values containing two height estimates, or by using the projected heights
 as opposed to actual heights, as directed by Christelle during a meeting.
 
 Input: String, int, or float representing a pyramid dimension value
-Output: Numeric type (likely float, possibly int) representing the pyramid dimension value
+Output: Numeric type (likely float, possibly int) representing the pyramid 
+        dimension value
 '''
 def average_of_two(val):
-    if isinstance(val, int) or isinstance(val, float) or pd.isna(val): return val
+    if isinstance(val, int) or isinstance(val, float) or pd.isna(val): 
+        return val
 
     if ',' in val: return 72    # Temporary: Deals with that one weird value
 
@@ -73,8 +82,11 @@ horizontal = go.Figure(go.Bar(
     marker={"color": colors,
             "pattern_shape": tl['state_of_completion'].map({'Unfinished': 'x', 
                                                             'Unfinished?': '/', 
-                                                            'Completed': '', '': '', np.nan: ''}),
-            "line_color": tl['pyramid_texts'].map({'Yes': 'black', np.nan: 'white'}),
+                                                            'Completed': '', 
+                                                            '': '', 
+                                                            np.nan: ''}),
+            "line_color": tl['pyramid_texts'].map({'Yes': 'black', 
+                                                   np.nan: 'white'}),
             "line_width": tl['pyramid_texts'].map({'Yes': 2.5, np.nan: 0.5})},
     name = "King",
     legendgroup='royal',
@@ -137,7 +149,8 @@ horizontal.add_trace(
 # Final plot adjustments
 horizontal.update_layout(
     title = "Height of Pyramids By Complex",
-    xaxis = dict(title = "Pyramid Owner (Grouped By Complex)", dividercolor='#e8e8e8'),
+    xaxis = dict(title = "Pyramid Owner (Grouped By Complex)", 
+                 dividercolor='#e8e8e8'),
     yaxis = dict(
         title = "Height (meters)", 
         dtick = 10),
