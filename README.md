@@ -12,3 +12,13 @@ This project aims to implement a tool to visualize the evolution of pyramid buil
 - How linear is the development of pyramid construction, and to what extent does it reflect the rise and fall of the Pyramid Age?
 
 - How do visual representations, such as those in the `assets/` folder in this repository, influence our perception of these monuments, their development, and the surrounding social context?
+
+## Workflow
+
+### Datasets
+The Egyptology team keeps their most up-to-date dataset in a shared Google Drive. Currently, if that dataset is to be retrieved, it will be manually downloaded from Google Drive as a csv file. This constitutes the raw dataset which is found in the ``assets`` directory as ``raw_pyramid_data.csv``. This dataset is formatted in a way that suits the particular organizational needs of the Egyptology team, but it is not in an ideal format for data analysis. Much of the dataset can currently be normalized, but complete "tidiness" cannot yet be achieved, as certain inconsistencies, ambiguities, and potentials for data loss exist while the dataset is in its current form. Therefore, a form of the dataset that has as much normalization as is currently possible can be found in the ``assets`` directory as ``normalized_pyramid_data.csv``, which was created from the raw dataset by way of the cleanup script, which is discussed below.
+
+### Cleanup
+The dataset cleanup script can be found in the ``src/cleanup`` directory as ``cleanup_script.py``. An extensive description of the program and its functions can be found in the docstrings written in the script itself. To summarize, it is a script specifically tailored to the normalization needs of our Old Kingdom pyramid dataset. 
+
+### Plot Creation
