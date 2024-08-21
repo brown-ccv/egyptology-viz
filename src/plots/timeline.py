@@ -18,7 +18,8 @@ tl.loc[tl['pyramid_complex'] == 'Ibi', ['start_of_reign']] = 2143
 tl.loc[tl['pyramid_complex'] == 'Ibi', ['end_of_reign']] = 2141
 
 # Select relevent columns as dataframe and series
-tl = tl[['pyramid_owner', 'start_of_reign', 'end_of_reign', 'length_of_reign']].dropna()
+tl = tl[['pyramid_owner', 'start_of_reign', 
+         'end_of_reign', 'length_of_reign']].dropna()
 pyramid_owners = tl['pyramid_owner']
 starts = tl['start_of_reign']
 ends = tl['end_of_reign']
