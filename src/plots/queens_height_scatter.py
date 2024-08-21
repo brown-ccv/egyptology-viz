@@ -1,0 +1,74 @@
+import pandas as pd
+import numpy as np
+import plotly.express as px
+
+df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
+
+key = ['unknown', 'pyramid?']
+complexes = df[~df['pyramid_complex'].isin(key)]
+
+# Fill in 'start_of_reign' for every row where it is NA with the year of the respective King's start of reign
+# TODO: Add this functionality to the cleanup script
+unique_comp = complexes['pyramid_complex'].unique()
+temp = df
+
+for comp in unique_comp:
+    start = temp[temp['pyramid_complex'] == comp]['start_of_reign'].max()
+    temp[temp['pyramid_complex'] == comp]['start_of_reign'] = temp[temp['pyramid_complex'] == comp]['start_of_reign'].replace(np.nan, start)
+
+temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574   # This had to be done to get it in the correct order (value was missing)
+temp.dropna(subset='height', inplace=True)
+temp.sort_values(by='start_of_reign', ascending=False, inplace=True)
+
+# Getting the height column to be numeric
+def average_of_two(val):
+    if isinstance(val, int) or isinstance(val, float) or pd.isna(val): return val
+
+    if ',' in val: return 72    # Temporary: Deals with that one weird value
+
+    nums = val.split('-')
+    if len(nums) == 1: return float(nums[0])
+    return (float(nums[0]) + float(nums[1])) / 2
+
+temp['height'] = temp['height'].map(average_of_two).astype(float)
+
+queens = temp[temp['royal_status'] == 'Queen']
+queen_data = queens[['pyramid_owner', 'dynasty', 'royal_status', 'daughter_of', 'royal_mother_title', 'likely_wife', 'wife_title', 'vizier', 'regent', 'relationship_to_king', 'height', 'title']]
+queen_data['dynasty'] = queen_data['dynasty'].astype(int)
+
+# Reshape queen data from wide to long (Binary categories get put into a new column, each category applied to a specific queen given a row, with the status of that category in another column)
+
+melted_queens = queen_data.melt(ignore_index=False, id_vars=['dynasty', 'height', 'pyramid_owner', 'relationship_to_king', 'daughter_of', 'title'], value_vars=['vizier', 'regent', 'royal_mother_title', 'likely_wife', 'wife_title']).reset_index()
+
+# Strip scatter plot version 1
+
+melted_truth = melted_queens[melted_queens['value'] == True]
+
+fig = px.strip(
+    melted_truth,
+    x = 'title',
+    y = 'height',
+    color = 'variable',
+    width = 1200,
+    title = 'Attributes of Pyramid-owning Queens',
+    labels = {
+        'title': 'Queen Pyramid',
+        'height': 'Height of Pyramid (meters)',
+        'variable': 'Attributes',
+    }
+)
+fig.update_layout(
+    title_x = 0.5,
+    xaxis = dict(
+        ticks = 'inside'
+    ))
+
+# Update the legend variable names
+new_names = {'vizier': 'Vizier',
+             'regent': 'Regent',
+             'royal_mother_title': 'Royal Mother Title',
+             'likely_wife': 'Likely Wife',
+             'wife_title': 'Wife Title'}
+fig.for_each_trace(lambda t: t.update(name = new_names[t.name]))
+
+fig.write_image("images/jose-queen-height-by-status-scatter.png")
