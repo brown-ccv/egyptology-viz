@@ -29,8 +29,18 @@ def average_of_two(val):
     
     return (float(nums[0]) + float(nums[1])) / 2
 
-# Dataframe creation/manipulation
 def prepare_dataframe(df):
+    """
+    Prepare a subset of the original dataframe to allow for the creation of 
+    our desired plot.
+
+    Input:
+        df: Pandas dataframe containing the original normalized pyramid data
+    Output:
+        Pandas dataframe representing a subset of the original dataframe with 
+        additional modifications to allow for proper plotting
+    """
+
     # Drop pyramids with no known complex
     bad_pyramid_complexes = ['unknown', 'pyramid?']
     complexes = df[~df['pyramid_complex'].isin(bad_pyramid_complexes)]
@@ -53,9 +63,11 @@ def prepare_dataframe(df):
 
     # Drop rows with no pyramid height value
     temp.dropna(subset='height', inplace=True)
+
     # Sort all remaining rows in chronological order
     temp.sort_values(by='start_of_reign', ascending=False, inplace=True)
 
+    # Take the averages for elements with two height estimates
     temp['height'] = temp['height'].map(average_of_two).astype(float)
 
     # Create a new dataframe with a subset of data that is needed for the plot
@@ -63,14 +75,28 @@ def prepare_dataframe(df):
             'length_of_reign', 'height', 'royal_status', 'relationship_to_king',
             'title', 'pyramid_texts', 'state_of_completion'] # add formatting
     tl = temp[columns]
+
     # Omit Khentkaus I (Queen, not at a King's complex)
     tl = tl.drop(tl[tl['pyramid_complex'] == 'Khentkaus I'].index)
 
     return tl
 
 def create_figure(tl):
+    """
+    Create a bar plot of the pyramid data with each pyramid grouped by 
+    its respective complex on the x-axis, its height on the y-axis, the 
+    royal status of the pyramid owner determining the color of the bar, the 
+    state of completion determining the bar pattern shape, and the presence 
+    of pyramid texts determining the bar outline color.
+
+    Input:
+        tl: The dataframe containing the pyramid data
+    Output:
+        A Plotly graph objects bar plot of the pyramid data
+    """
+
     # Graph objects histogram
-    horizontal = go.Figure(go.Bar(
+    fig = go.Figure(go.Bar(
         x = tl.loc[:,["pyramid_complex", "title"]].T.values, 
         y = tl["height"].values, 
         marker={"color": tl['royal_status'].map({'King': '#636EFA', 
@@ -102,13 +128,13 @@ def create_figure(tl):
         ])))
 
     # Create dummy traces for the legend because plotly wouldn't do it automatically
-    horizontal.add_trace(
+    fig.add_trace(
         go.Bar(
         x=["Dummy"],
         y=[0],
         name="Queen",
         legendgroup='royal'))
-    horizontal.add_trace(
+    fig.add_trace(
         go.Bar(
             x=[None],
             y=[None],
@@ -119,7 +145,7 @@ def create_figure(tl):
             marker_line_width = 0
         )
     )
-    horizontal.add_trace(
+    fig.add_trace(
         go.Bar(
             x=[None],
             y=[None],
@@ -130,7 +156,7 @@ def create_figure(tl):
             marker_line_width = 0
         )
     )
-    horizontal.add_trace(
+    fig.add_trace(
         go.Bar(
             x=[None],
             y=[None],
@@ -143,7 +169,7 @@ def create_figure(tl):
     )
 
     # Final plot adjustments
-    horizontal.update_layout(
+    fig.update_layout(
         title = "Height of Pyramids By Complex",
         xaxis = dict(title = "Pyramid Owner (Grouped By Complex)", 
                     dividercolor='#e8e8e8'),
@@ -163,19 +189,20 @@ def create_figure(tl):
             orientation='h'
         ))
     
-    return horizontal
+    return fig
 
 def main():
     # Import the pyramid dataset
     df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
-    tl = prepare_dataframe(df)
 
+    # Prepare the dataframe for plotting
+    pyramids_and_owners = prepare_dataframe(df)
 
-    # Plotly portion
-    horizontal = create_figure(tl)
+    # Create the plot
+    fig = create_figure(pyramids_and_owners)
 
     # Output plot as a png image
-    horizontal.write_image('images/jose-total-complex-height-by-status-bar.png')
+    fig.write_image('images/jose-total-complex-height-by-status-bar.png')
 
 if __name__ == "__main__":
     main()
