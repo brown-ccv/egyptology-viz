@@ -59,9 +59,10 @@ def average_of_two(val):
 temp['height'] = temp['height'].map(average_of_two).astype(float)
 
 # Create a new dataframe with a subset of data that is needed for the plot
-tl = temp[['pyramid_complex', 'pyramid_owner', 'start_of_reign', 'end_of_reign',
+columns  = ['pyramid_complex', 'pyramid_owner', 'start_of_reign', 'end_of_reign',
            'length_of_reign', 'height', 'royal_status', 'relationship_to_king',
-           'title', 'pyramid_texts', 'state_of_completion']]
+           'title', 'pyramid_texts', 'state_of_completion'] # add formatting
+tl = temp[columns]
 # Omit Khentkaus I (Queen, not at a King's complex)
 tl = tl.drop(tl[tl['pyramid_complex'] == 'Khentkaus I'].index)
 
