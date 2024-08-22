@@ -1,4 +1,4 @@
-# Queen pyramid height with attributes scatterplot
+""" Queen pyramid height with attributes scatterplot """
 
 import pandas as pd
 import numpy as np
@@ -45,9 +45,9 @@ def prepare_dataframe(df):
     bad_pyramid_complexes = ['unknown', 'pyramid?']
     complexes = df[~df['pyramid_complex'].isin(bad_pyramid_complexes)]
 
-    # Fill in 'start_of_reign' for every row where it is NA with the year of the 
-    # respective King's start of reign (ie max value of 'start_of_reign' for 
-    # that complex).
+    # Fill in 'start_of_reign' for every row where it is NA with the year of 
+    # the respective King's start of reign (ie max value of 'start_of_reign' 
+    # for that complex).
     #
     # TODO: Add this functionality to the cleanup script (?)
     unique_comp = complexes['pyramid_complex'].unique()
@@ -79,26 +79,40 @@ def prepare_dataframe(df):
     queen_data = queens[columns]
     queen_data['dynasty'] = queen_data['dynasty'].astype(int)
 
-    '''
-    Reshape queen data from wide to long (Binary categories get put into a new 
-    column, each category applied to a specific queen given a row, with the status 
-    of that category in another column)
-    '''
+    
+    # Reshape queen data from wide to long (Binary categories get put into a 
+    # new column, each category applied to a specific queen given a row, with 
+    # the status of that category in another column)
     melted_queens = queen_data.melt(ignore_index=False, 
-                                    id_vars=['dynasty', 'height', 'pyramid_owner', 
+                                    id_vars=['dynasty', 'height', 
+                                             'pyramid_owner', 
                                             'relationship_to_king', 
                                             'daughter_of', 'title'], 
                                     value_vars=['vizier', 'regent', 
                                                 'royal_mother_title', 
                                                 'likely_wife', 
                                                 'wife_title']).reset_index()
-    # Select only those rows that correspond to some category applying to a given 
-    # queen.
+    # Select only those rows that correspond to some category applying to a 
+    # given queen.
     melted_truth = melted_queens[melted_queens['value'] == True]
 
     return melted_truth
 
 def create_figure(melted_truth):
+    """
+    Create a strip plot with the queen pyramid data, with the queen pyramids 
+    on the x-axis, the pyramid height on the y-axis. Each queen can have 
+    one or more attributes associated with her, and each attribute that 
+    applies to a given queen will be represented by a point with a color 
+    corresponding to the given attribute. If multiple attributes apply to 
+    a given queen, each point will be grouped together as close as possbile on 
+    the x-axis while maintaining the same position on the y-axis.
+
+    Input:
+        tl: The dataframe containing the pyramid data
+    Output:
+        A Plotly express strip plot of the pyramid data
+    """
     fig = px.strip(
         melted_truth,
         x = 'title',
