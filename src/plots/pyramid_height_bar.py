@@ -4,9 +4,7 @@ import pandas as pd
 import numpy as np
 from plotly import graph_objects as go
 
-'''
-    Dataframe creation/manipulation
-'''
+# Dataframe creation/manipulation
 
 # Import the pyramid dataset
 df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
@@ -15,15 +13,13 @@ df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
 bad_pyramid_complexes = ['unknown', 'pyramid?']
 complexes = df[~df['pyramid_complex'].isin(bad_pyramid_complexes)]
 
-'''
-Fill in 'start_of_reign' for every row where it is NA with the year of the 
-respective King's start of reign.
-
-TODO: Add this functionality to the cleanup script.
-'''
+# Fill in 'start_of_reign' for every row where it is NA with the year of the 
+# respective King's start of reign (ie max value of 'start_of_reign' for 
+# that complex).
+#
+# TODO: Add this functionality to the cleanup script (?)
 unique_comp = complexes['pyramid_complex'].unique()
 temp = df
-
 for comp in unique_comp:
     start = temp[temp['pyramid_complex'] == comp]['start_of_reign'].max()
     temp[temp['pyramid_complex'] == comp]['start_of_reign'].replace(np.nan, 
@@ -38,16 +34,19 @@ temp.dropna(subset='height', inplace=True)
 # Sort all remaining rows in chronological order
 temp.sort_values(by='start_of_reign', ascending=False, inplace=True)
 
-''' 
-Get the height column to be interpreted as numeric by taking the average of 
-values containing two height estimates, or by using the projected heights 
-as opposed to actual heights, as directed by Christelle during a meeting.
-
-Input: String, int, or float representing a pyramid dimension value
-Output: Numeric type (likely float, possibly int) representing the pyramid 
-        dimension value
-'''
 def average_of_two(val):
+    """
+    Get the height column to be interpreted as numeric by taking the average 
+    of values containing two height estimates, or by using the projected 
+    heights as opposed to actual heights, as directed by Christelle during 
+    a meeting.
+
+    Input: 
+        val: String, int, or float representing a pyramid dimension value
+    Output: 
+        Numeric type (likely float, possibly int) representing the pyramid 
+        dimension value
+    """
     if isinstance(val, int) or isinstance(val, float) or pd.isna(val): 
         return val
 
@@ -66,9 +65,7 @@ tl = temp[columns]
 # Omit Khentkaus I (Queen, not at a King's complex)
 tl = tl.drop(tl[tl['pyramid_complex'] == 'Khentkaus I'].index)
 
-''' 
-    Plotly portion
-'''
+# Plotly portion
 
 # Create list of colors for the bars to indicate royal status
 def setColor(y):
