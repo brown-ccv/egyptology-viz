@@ -12,8 +12,8 @@ from plotly import graph_objects as go
 df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
 
 # Drop pyramids with no known complex
-key = ['unknown', 'pyramid?']
-complexes = df[~df['pyramid_complex'].isin(key)]
+bad_pyramid_complexes = ['unknown', 'pyramid?']
+complexes = df[~df['pyramid_complex'].isin(bad_pyramid_complexes)]
 
 '''
 Fill in 'start_of_reign' for every row where it is NA with the year of the 
