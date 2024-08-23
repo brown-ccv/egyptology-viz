@@ -1,7 +1,6 @@
 """ Queen pyramid height with attributes scatterplot """
 
 import pandas as pd
-import numpy as np
 import plotly.express as px
 
 def average_of_two(val):
@@ -41,22 +40,14 @@ def prepare_dataframe(df):
         additional modifications to allow for proper plotting
     """
 
-    # Drop pyramids with no known complex
-    bad_pyramid_complexes = ['unknown', 'pyramid?']
-    complexes = df[~df['pyramid_complex'].isin(bad_pyramid_complexes)]
-
     # Fill in 'start_of_reign' for every row where it is NA with the year of 
     # the respective King's start of reign (ie max value of 'start_of_reign' 
     # for that complex).
     #
     # TODO: Add this functionality to the cleanup script (?)
-    unique_comp = complexes['pyramid_complex'].unique()
     temp = df
-    for comp in unique_comp:
-        start = temp[temp['pyramid_complex'] == comp]['start_of_reign'].max()
-        temp[temp['pyramid_complex'] == comp]['start_of_reign'].replace(np.nan, 
-                                                                        start, 
-                                                                        inplace=True)
+    complex_dict = df.groupby('pyramid_complex')['start_of_reign'].max().to_dict()
+    temp['start_of_reign'] = df['pyramid_complex'].map(complex_dict)
 
     # This had to be done to get it in the correct order (value was missing)
     temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574
@@ -64,16 +55,13 @@ def prepare_dataframe(df):
     # Drop rows with no pyramid height value
     temp.dropna(subset='height', inplace=True)
 
-    # Sort all remaining rows in chronological order
-    temp.sort_values(by='start_of_reign', ascending=False, inplace=True)
-
     # Take the averages for elements with two height estimates
     temp['height'] = temp['height'].map(average_of_two).astype(float)
 
     # Create a new dataframe with a subset of data that is needed for the plot
     columns = ['pyramid_owner', 'dynasty', 'royal_status', 'daughter_of', 
                 'royal_mother_title', 'likely_wife', 'wife_title', 'vizier', 
-                'regent', 'relationship_to_king', 'height', 'title']
+                'regent', 'relationship_to_king', 'height', 'title', 'start_of_reign']
     # Create a new dataframe with a subset of data that is needed for the plot
     queens = temp[temp['royal_status'] == 'Queen']
     queen_data = queens[columns]
@@ -87,7 +75,8 @@ def prepare_dataframe(df):
                                     id_vars=['dynasty', 'height', 
                                              'pyramid_owner', 
                                             'relationship_to_king', 
-                                            'daughter_of', 'title'], 
+                                            'daughter_of', 'title',
+                                            'start_of_reign'], 
                                     value_vars=['vizier', 'regent', 
                                                 'royal_mother_title', 
                                                 'likely_wife', 
@@ -95,6 +84,9 @@ def prepare_dataframe(df):
     # Select only those rows that correspond to some category applying to a 
     # given queen.
     melted_truth = melted_queens[melted_queens['value'] == True]
+
+    # Sort the queens in chronological order
+    melted_truth.sort_values(by=['start_of_reign', 'title'], ascending=[False, True], inplace=True)
 
     return melted_truth
 

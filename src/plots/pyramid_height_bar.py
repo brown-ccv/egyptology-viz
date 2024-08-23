@@ -41,22 +41,14 @@ def prepare_dataframe(df):
         additional modifications to allow for proper plotting
     """
 
-    # Drop pyramids with no known complex
-    bad_pyramid_complexes = ['unknown', 'pyramid?']
-    complexes = df[~df['pyramid_complex'].isin(bad_pyramid_complexes)]
-
     # Fill in 'start_of_reign' for every row where it is NA with the year of the 
     # respective King's start of reign (ie max value of 'start_of_reign' for 
     # that complex).
     #
     # TODO: Add this functionality to the cleanup script (?)
-    unique_comp = complexes['pyramid_complex'].unique()
     temp = df
-    for comp in unique_comp:
-        start = temp[temp['pyramid_complex'] == comp]['start_of_reign'].max()
-        temp[temp['pyramid_complex'] == comp]['start_of_reign'].replace(np.nan, 
-                                                                        start, 
-                                                                        inplace=True)
+    complex_dict = df.groupby('pyramid_complex')['start_of_reign'].max().to_dict()
+    temp['start_of_reign'] = df['pyramid_complex'].map(complex_dict)
 
     # This had to be done to get it in the correct order (value was missing)
     temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574
@@ -65,19 +57,19 @@ def prepare_dataframe(df):
     temp.dropna(subset='height', inplace=True)
 
     # Sort all remaining rows in chronological order
-    temp.sort_values(by='start_of_reign', ascending=False, inplace=True)
+    temp.sort_values(by=['start_of_reign', 'royal_status'], ascending=[False, True], inplace=True)
 
     # Take the averages for elements with two height estimates
     temp['height'] = temp['height'].map(average_of_two).astype(float)
 
     # Create a new dataframe with a subset of data that is needed for the plot
-    columns  = ['pyramid_complex', 'pyramid_owner', 'start_of_reign', 'end_of_reign',
+    columns  = ['dynasty', 'pyramid_owner', 'start_of_reign', 'end_of_reign',
             'length_of_reign', 'height', 'royal_status', 'relationship_to_king',
             'title', 'pyramid_texts', 'state_of_completion'] # add formatting
     tl = temp[columns]
 
     # Omit Khentkaus I (Queen, not at a King's complex)
-    tl = tl.drop(tl[tl['pyramid_complex'] == 'Khentkaus I'].index)
+    #tl = tl.drop(tl[tl['pyramid_complex'] == 'Khentkaus I'].index)
 
     return tl
 
@@ -97,19 +89,22 @@ def create_figure(tl):
 
     # Graph objects histogram
     fig = go.Figure(go.Bar(
-        x = tl.loc[:,["pyramid_complex", "title"]].T.values, 
+        #x = tl.loc[:,["pyramid_complex", "title"]].T.values, 
+        #x = tl.loc[:,["dynasty", "title"]].T.values, 
+        x = [tl['dynasty'], tl['title']],
         y = tl["height"].values, 
-        marker={"color": tl['royal_status'].map({'King': '#636EFA', 
-                                                 'Queen': '#EF553B'}),
+        marker={"color": tl['royal_status'].map({'King': '#83B0E1', 
+                                                 'Queen': '#FFBA78'}),
                 "pattern_shape": tl['state_of_completion'].map({'Unfinished': 'x', 
-                                                                'Unfinished?': '/', 
+                                                                'Unfinished?': 'x', 
                                                                 'Completed': '', 
                                                                 '': '', 
                                                                 np.nan: ''}),
-                "line_color": tl['pyramid_texts'].map({'Yes': 'black', 
-                                                    np.nan: 'white'}),
-                "line_width": tl['pyramid_texts'].map({'Yes': 2.5, 
-                                                       np.nan: 0.5})},
+                #"line_color": tl['pyramid_texts'].map({'Yes': 'black', 
+                #                                    np.nan: 'white'}),
+                #"line_width": tl['pyramid_texts'].map({'Yes': 2.5, 
+                #                                       np.nan: 0.5})},
+        },
         name = "King",
         legendgroup='royal',
         customdata = np.stack((tl['pyramid_owner'], 
@@ -133,6 +128,7 @@ def create_figure(tl):
         x=["Dummy"],
         y=[0],
         name="Queen",
+        marker_color="#FFBA78",
         legendgroup='royal'))
     fig.add_trace(
         go.Bar(
@@ -145,6 +141,7 @@ def create_figure(tl):
             marker_line_width = 0
         )
     )
+    '''
     fig.add_trace(
         go.Bar(
             x=[None],
@@ -156,6 +153,7 @@ def create_figure(tl):
             marker_line_width = 0
         )
     )
+    '''
     fig.add_trace(
         go.Bar(
             x=[None],
@@ -171,7 +169,7 @@ def create_figure(tl):
     # Final plot adjustments
     fig.update_layout(
         title = "Height of Pyramids By Complex",
-        xaxis = dict(title = "Pyramid Owner (Grouped By Complex)", 
+        xaxis = dict(title = "Pyramid Owner (Grouped By Dynasty)", 
                     dividercolor='#e8e8e8'),
         yaxis = dict(
             title = "Height (meters)", 
