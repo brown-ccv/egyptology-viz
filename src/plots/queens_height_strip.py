@@ -52,6 +52,13 @@ def prepare_dataframe(df):
     # This had to be done to get it in the correct order (value was missing)
     temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574
 
+    # Similarly this situates the queen in the correct dynasty in lieu of an
+    # actual start_of_reign value (tail end of the dynasty)
+    temp.loc[temp['pyramid_owner'] == 'Khentkaus I', 'start_of_reign'] = 2489.0
+
+    # Drop Mehaa because her pyramid height is unknown
+    temp = temp.drop(temp[temp['pyramid_owner'] == 'Mehaa'].index)
+
     # Drop rows with no pyramid height value
     temp.dropna(subset='height', inplace=True)
 
@@ -123,6 +130,12 @@ def create_figure(melted_truth):
         xaxis = dict(
             ticks = 'inside'
         ))
+    # Ensure the x axis is organized chronologically
+    titles = melted_truth['title'].unique()
+    fig.update_xaxes(
+        categoryorder = 'array',
+        categoryarray = titles
+    )
 
     # Update the legend variable names
     new_names = {'vizier': 'Vizier',
