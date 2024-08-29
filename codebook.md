@@ -1,122 +1,40 @@
-**Dataset Title:** Pyramid Data (TBD)
+**Dataset Title:** Egyptian Old Kingdom Pyramid Data
 
-**Date Range:** From month YYYY - To month YYYY (might not be needed)  
-
-**Purpose:**  This dataset is for foo bar.
+**Date Range:** Approx. 2650 - 2118 BCE (might not be needed)  
 
 ----------
 
-### Variable Descriptions:
+### Data Dictionary:
 
-1.  **Pyramid Owner**
-
-    -   Type: Categorical
-    -   Description: The name of the individual for whom the pyramid was made.
-2.  **Pyramid Complex**
-    
-    -   Type: Categorical
-    -   Description: The complex that the pyramid is located in.
-3.  **Royal Status**
-    
-    -   Type: Categorical
-    -   Description: The royal status of the pyramid owner.
-4.  **Daughter Of**
-    
-    -   Type: Categorical
-    -   Description: The father of the given queen.
-5.  **Royal Mother Title**
-    
-    -   Type: Categorical
-    -   Description: Whether or not a queen bore the title of "Royal Mother".
-6.  **Likely Wife**
-    
-    -   Type: Categorical
-    -   Description: 
-7.  **Wife Title**
-    
-    -   Type: Categorical
-    -   Description: 
-8.  **Vizier**
-    
-    -   Type: Categorical
-    -   Description: Whether or not a pyramid owner was a vizier.
-9.  **Regent**
-
-    -   Type: Categorical
-    -   Description: Whether or not a pyramid owner was a regent.
-10.  **Relationship to King**
-    
-        -   Type: Categorical
-        -   Description: A pyramid owner's relationship(s) to one or more kings.
-11.  **Start of Reign**
-    
-        -   Type: Numeric
-        -   Description: The year marking the start of a king's reign.
-12.  **End of Reign**
-    
-        -   Type: Numeric
-        -   Description: The year marking the end of a king's reign.
-13.  **Length of Reign**
-    
-        -   Type: Numeric
-        -   Description: The total length of a king's reign.
-14.  **Period**
-    
-        -   Type: Categorical
-        -   Description: The period within which the pyramid was built.
-15.  **Dynasty**
-    
-        -   Type: Numeric
-        -   Description: The dynasty within which the pyramid was built.
-16.  **Title**
-    
-        -   Type: Categorical
-        -   Description: The name of the pyramid.
-17.  **Pyramid Texts**
-    
-        -   Type: Categorical
-        -   Description: Whether or not texts were present at the pyramid.
-18.  **Site or Location**
-    
-        -   Type: Categorical
-        -   Description: The site/location of the pyramid.
-19.  **Orientation**
-    
-        -   Type: Categorical
-        -   Description: The cardinal orientation of the pyramid.
-20.  **Casing**
-    
-        -   Type: Categorical
-        -   Description: The material(s) used in the pyramid's casing.
-21.  **State of Completion**
-
-        -   Type: Categorical
-        -   Description: The pyramid's state of completion.
-22.  **Superstructure Type**
-
-        -   Type: Categorical
-        -   Description: The type of the structure.
-23.  **Height**
-
-        -   Type: Numeric
-        -   Description: The height of the structure.
-24.  **Length**
-
-        -   Type: Numeric
-        -   Description: The length of the structure.
-25.  **Width**
-
-        -   Type: Numeric
-        -   Description: The width of the structure.
-26.  **Angle**
-
-        -   Type: Numeric
-        -   Description: The slope of the structure.
-27.  **Notes**
-
-        -   Type: Categorical
-        -   Description: Miscellaneous notes about the structure or research relating to it.
-
+| Variable | Type | Description |
+| --------- | ---- | ---------- |
+| Pyramid Owner | Categorical | The name of the individual for whom the pyramid was made. |
+| Pyramid Complex | Categorical | The complex that the pyramid is located in. |
+| Royal Status | Categorical | The royal status of the pyramid owner. |
+| Daughter Of | Categorical | The father of the given queen. |
+| Royal Mother Title | Categorical | Whether or not a queen bore the title of "Royal Mother". |
+| Likely Wife | Categorical | Whether or not a case could be made that a queen was a wife to a king. Especially relevant in the absence of evidence of the royal wife title. |
+| Wife Title | Categorical | Whether or not a queen bore the title of "Royal Wife". |
+| Vizier | Categorical | Whether or not a pyramid owner was a vizier. |
+| Regent | Categorical | Whether or not a pyramid owner was a regent. |
+| Relationship to King | Categorical | A pyramid owner's relationship(s) to one or more kings. |
+| Start of Reign | Numeric | The year marking the start of a king's reign. |
+| End of Reign | Numeric | The year marking the end of a king's reign. |
+| Length of Reign | Numeric | The total length of a king's reign. |
+| Period | Categorical | The period within which the puramid was built. |
+| Dynasty | Categorical | The dynasty within which the pyramid was built. |
+| Title | Categorical | The name of the pyramid. |
+| Pyramid Texts | Categorical | Whether or not texts were present in the pyramid. |
+| Site or Location | Categorical | The site/location of the pyramid. |
+| Orientation | Categorical | The cardinal orientation of the pyramid. |
+| Casing | Categorical | The material(s) used in the pyramid's casing. |
+| State of Completion | Categorical | The pyramid's state of completion. |
+| Superstructure Type | Categorical | The type of the structure. |
+| Height | Numeric | The height of the pyramid in meters. |
+| Length | Numeric | The length of the pyramid in meters. |
+| Width | Numeric | The width of the pyramid in meters. |
+| Angle | Numeric | The slope of the structure in degrees. |
+| Notes | Categorical | Miscellaneous notes about the structure, research relating to it, or the data itself. |
 
 ----------
 
@@ -130,7 +48,7 @@
 
 ### Missing Values:
 
--   Describe how missing values are represented.
+-   Missing values are typically represented by the absence of data in a given row/column, which is to say NA or NaN. Occasionally, missing numeric values will be represented as ``0`` or ``0.0`` as well as NaN. This is the case for pragmatic reasons, typically for the purposes of using less code when generating our visuals.
 
 ----------
 
@@ -148,23 +66,9 @@
 
 ### Data Structure:
 
--   Number of observations: X
--   Number of variables: Y
+-   Number of observations: 72
+-   Number of variables: 27
 -   No hierarchical structure
-
-----------
-
-### Data Dictionary:
-
-| Variable | Type | Description |
-| --------- | ---- | ---------- |
-| id | Numeric | Unique identifier for each pyramid. |
-| Foo | Categorical | Foo (1 = this, 2 = that). |
-| Bar | Numeric | Meaning of bar (in some units). |
-| Baz | Numeric | Meaning of baz. |
-| Zoo | Numeric | Meaning of zoo. |
-
-----------
 
 ### Metadata:
 
