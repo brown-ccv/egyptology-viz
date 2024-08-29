@@ -18,6 +18,34 @@ This project aims to implement a tool to visualize the evolution of pyramid buil
 ### Datasets
 The most up-to-date dataset in a shared folder on Google Drive. Currently, if that dataset is to be retrieved, it will be manually downloaded from that location as a csv file. This constitutes the raw dataset which is found in the `assets` directory as `raw_pyramid_data.csv`. This version of the dataset is formatted in a way that suits some particular organizational workflows, but it is not in an ideal format for data analysis. A more analysis-ready version of the dataset can be found in `assets/normalized_pyramid_data.csv`, which was created from the raw dataset by way of the cleanup script (see [here](#cleanup)).
 
+### Package Management
+
+#### Installation
+
+This project makes use of Poetry for package management. In order to install a compatible version of Poetry, Python version 3.9 or greater must be installed on your system. Poetry can be installed by following the instructions on [its official website](https://python-poetry.org/docs/#installation).
+
+To resolve the project's dependencies, navigate to the top level of the directory and run
+
+`poetry install`
+
+#### Running files
+
+Once complete, cells in Jupyter notebooks can be run within a given notebook without using Poetry. However, the scripts used to generate completed visuals will require poetry in order to run properly. To run a script, run
+
+`poetry run python path/to/script`
+
+or
+
+`poetry run python3 path/to/script`
+
+depending on how your system refers to your Python version in its `PATH`.
+
+#### Adding new dependencies
+
+When a new dependency is added to the project, it can be added to Poetry by way of `pyproject.toml` by running
+
+`poetry add name-of-dependency`
+
 ### Cleanup
 The dataset cleanup script can be found in the `src/cleanup/cleanup_script.py` file. An extensive description of the program and its functions can be found in the docstrings written in the script itself. To summarize, it is a script specifically tailored to the typical normalization needs of our Old Kingdom pyramid dataset. Each function can be executed individually either by way of a command-line interface, or by way of a csv file that can be provided to the program in lieu of CLI input. The CLI would be preferable if the user wanted to perform iterative modifications to a dataset, or if they wanted to only perform a few minor modifications quickly. The csv file - which lists each desired function and its inputs - would be preferable for performing routine modifications on a new version of the dataset that had minor updates, or any other series of modifications that would be too laborious and error-prone to manually type out in the CLI. Irrespective of the selected approach, the final, (relatively) normalized dataset should then be stored as `assets/normalized_pyramid_data.csv`.
 
