@@ -53,6 +53,13 @@ def prepare_dataframe(df):
     # This had to be done to get it in the correct order (value was missing)
     temp.loc[temp['pyramid_complex'] == 'Sneferu 3', 'start_of_reign'] = 2574
 
+    # Information conflicts with this individual pyramid. It was requested to 
+    # place this pyramid after Djedefre's, despite the rule dates currently in
+    # the dataset. The same goes for the name change.
+    temp.loc[temp['pyramid_owner'] == 'Nebka?', 'start_of_reign'] = 2527
+    temp.loc[temp['pyramid_owner'] == 'Nebka?', 'dynasty'] = 4 
+    temp.loc[temp['pyramid_owner'] == 'Nebka?', 'title'] = 'Pyramid of Zawyet el-Aryan'
+
     # Drop rows with no pyramid height value
     temp.dropna(subset='height', inplace=True)
 
@@ -67,9 +74,6 @@ def prepare_dataframe(df):
             'length_of_reign', 'height', 'royal_status', 'relationship_to_king',
             'title', 'pyramid_texts', 'state_of_completion'] # add formatting
     tl = temp[columns]
-
-    # Omit Khentkaus I (Queen, not at a King's complex)
-    #tl = tl.drop(tl[tl['pyramid_complex'] == 'Khentkaus I'].index)
 
     return tl
 
@@ -89,8 +93,6 @@ def create_figure(tl):
 
     # Graph objects histogram
     fig = go.Figure(go.Bar(
-        #x = tl.loc[:,["pyramid_complex", "title"]].T.values, 
-        #x = tl.loc[:,["dynasty", "title"]].T.values, 
         x = [tl['dynasty'], tl['title']],
         y = tl["height"].values, 
         marker={"color": tl['royal_status'].map({'King': '#83B0E1', 
@@ -100,6 +102,7 @@ def create_figure(tl):
                                                                 'Completed': '', 
                                                                 '': '', 
                                                                 np.nan: ''}),
+                # Currently unused, may be wanted later
                 #"line_color": tl['pyramid_texts'].map({'Yes': 'black', 
                 #                                    np.nan: 'white'}),
                 #"line_width": tl['pyramid_texts'].map({'Yes': 2.5, 
@@ -141,7 +144,7 @@ def create_figure(tl):
             marker_line_width = 0
         )
     )
-    '''
+    ''' Currently unused, but may be wanted later.
     fig.add_trace(
         go.Bar(
             x=[None],
@@ -161,10 +164,14 @@ def create_figure(tl):
             name='Pyramid Texts',
             legendgroup='texts',
             marker_color='white',
-            marker_line_color='black',
+            marker_line_color='white',
             marker_line_width=2.5
         )
     )
+
+    
+    fig.update_traces(marker=dict(pattern_shape=''),
+                    selector=dict(name="King"))
 
     # Final plot adjustments
     fig.update_layout(
