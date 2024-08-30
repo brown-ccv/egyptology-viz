@@ -19,8 +19,9 @@ def average_of_two(val):
     if isinstance(val, int) or isinstance(val, float) or pd.isna(val): 
         return val
 
+    # Temporary: Deals with that one weird actual AND projected value
     if ',' in val: 
-        return 72    # Temporary: Deals with that one weird value
+        return 72    
 
     nums = val.split('-')
     if len(nums) == 1: 

@@ -1,4 +1,4 @@
-# King length of rule timeline template
+""" King length of rule timeline template """
 
 import pandas as pd
 import numpy as np
@@ -7,10 +7,8 @@ import matplotlib.pyplot as plt
 # Import the dataset
 df = pd.DataFrame(pd.read_csv("assets/normalized_pyramid_data.csv"))
 
-'''
-Sort King rows (those with actual values for start_of_reign)  
-in chronological order.
-'''
+# Sort King rows (those with actual values for start_of_reign)  
+# in chronological order.
 tl = df.sort_values(by='start_of_reign', ascending=False)
 
 # Add rule time estimates for Ibi (source: Christelle)
@@ -27,6 +25,7 @@ length = tl['length_of_reign']
 
 # Construct timeline figure
 plt.figure(figsize=(16, 8))
+# Line below colors segments on a gradient
 #color = cm.rainbow(np.linspace(0, 1, len(starts)))
 plt.barh(y=0, 
          width=(ends - starts), 
