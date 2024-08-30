@@ -1,6 +1,6 @@
 **Dataset Title:** Egyptian Old Kingdom Pyramid Data
 
-**Date Range:** Approx. 2650 - 2118 BCE (might not be needed)  
+**Date Range:** Approx. 2700 - 2100 BCE 
 
 ----------
 
@@ -54,13 +54,7 @@
 
 ### Data Cleaning Procedures:
 
--   Document data cleaning procedures here.
-
-----------
-
-### Derived Variables or Features:
-
--   **Feature-1:**  Feature-1 description.
+Information regarding data cleaning procedures can be found [here.](./README.md#-Cleanup)
 
 ----------
 
