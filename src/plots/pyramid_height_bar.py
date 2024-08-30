@@ -1,4 +1,4 @@
-""" Pyramid height by pyramid complex histogram without timeline """
+""" Pyramid height by pyramid complex bar plot without timeline """
 
 import pandas as pd
 import numpy as np
@@ -46,7 +46,7 @@ def prepare_dataframe(df):
     # respective King's start of reign (ie max value of 'start_of_reign' for 
     # that complex).
     #
-    # TODO: Add this functionality to the cleanup script (?)
+    # TODO (?): Add this functionality to the cleanup script
     temp = df
     complex_dict = df.groupby('pyramid_complex')['start_of_reign'].max().to_dict()
     temp['start_of_reign'] = df['pyramid_complex'].map(complex_dict)
@@ -73,7 +73,7 @@ def prepare_dataframe(df):
     # Create a new dataframe with a subset of data that is needed for the plot
     columns  = ['dynasty', 'pyramid_owner', 'start_of_reign', 'end_of_reign',
             'length_of_reign', 'height', 'royal_status', 'relationship_to_king',
-            'title', 'pyramid_texts', 'state_of_completion'] # add formatting
+            'title', 'pyramid_texts', 'state_of_completion']
     tl = temp[columns]
 
     return tl
@@ -92,7 +92,7 @@ def create_figure(tl):
         A Plotly graph objects bar plot of the pyramid data
     """
 
-    # Graph objects histogram
+    # Graph objects bar plot
     fig = go.Figure(go.Bar(
         x = [tl['dynasty'], tl['title']],
         y = tl["height"].values, 

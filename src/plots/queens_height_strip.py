@@ -105,8 +105,8 @@ def create_figure(melted_truth):
     one or more attributes associated with her, and each attribute that 
     applies to a given queen will be represented by a point with a color 
     corresponding to the given attribute. If multiple attributes apply to 
-    a given queen, each point will be grouped together as close as possbile on 
-    the x-axis while maintaining the same position on the y-axis.
+    a given queen, each point will be grouped together as closely as possible 
+    on the x-axis while maintaining the same position on the y-axis.
 
     Input:
         tl: The dataframe containing the pyramid data
