@@ -1,0 +1,277 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Egypt Map</title>
+    </head>
+    <body style="margin: 0; padding: 0; height: 100vh; position: relative;">
+        <div id="map" style="height: 100%; width: 100%;">
+            <!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0a5d7fab332c763f6093c2e31d5b8a86 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_0a5d7fab332c763f6093c2e31d5b8a86" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_0a5d7fab332c763f6093c2e31d5b8a86 = L.map(
+                "map_0a5d7fab332c763f6093c2e31d5b8a86",
+                {
+                    center: [29.724247050000002, 31.1074128],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1dc96f1dd41bf19a2ec0644ec0ed34e8 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_1dc96f1dd41bf19a2ec0644ec0ed34e8.addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var marker_214b5238cd5ae46a0b8c31b66c8c790f = L.marker(
+                [29.850335, 31.228284],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var icon_93d5696a4f25d5099b4db6c2f7bb361e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_214b5238cd5ae46a0b8c31b66c8c790f.setIcon(icon_93d5696a4f25d5099b4db6c2f7bb361e);
+        
+    
+            var marker_c72d80994354f4dc03c23c2e2bb9bcf2 = L.marker(
+                [29.850335, 31.228284],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var div_icon_559a8315220f340abdebd5906bf97c73 = L.divIcon({"className": "empty", "html": "\n                            \u003cdiv style=\"font-size: 12.5px; color: red;font-weight:bold;font-family:Times New Roman;background-color: white;text-align:center;border-radius: 5px; border: 1px solid black\"\u003e\n                            \u003cb\u003e Site: Saqqara\u003cbr\u003e\n                            Kings: 12; Queens: 19\n                            \u003c/div\u003e\n                            ", "iconAnchor": [170, 0], "iconSize": [170, 0]});
+            marker_c72d80994354f4dc03c23c2e2bb9bcf2.setIcon(div_icon_559a8315220f340abdebd5906bf97c73);
+        
+    
+            var marker_9e5c56611204accfdc847c6b957d5c85 = L.marker(
+                [29.3729622, 31.1713734],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var icon_368332b27823bbdf8dd03b9f2fa0f166 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_9e5c56611204accfdc847c6b957d5c85.setIcon(icon_368332b27823bbdf8dd03b9f2fa0f166);
+        
+    
+            var marker_9b4e46af839331b9ac13325a563ef3ea = L.marker(
+                [29.3729622, 31.1713734],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var div_icon_4085a923a7aba683a3f1ca68f2d0dde1 = L.divIcon({"className": "empty", "html": "\n                            \u003cdiv style=\"font-size: 12.5px; color: green;font-weight:bold;font-family:Times New Roman;background-color: white;text-align:center;border-radius: 5px; border: 1px solid black\"\u003e\n                            \u003cb\u003e Site: Meidum\u003cbr\u003e\n                            Kings: 1; Queens: 0\n                            \u003c/div\u003e\n                            ", "iconAnchor": [170, 0], "iconSize": [170, 0]});
+            marker_9b4e46af839331b9ac13325a563ef3ea.setIcon(div_icon_4085a923a7aba683a3f1ca68f2d0dde1);
+        
+    
+            var marker_a1d439e0cc4f3a7a4169c7d5c05b533b = L.marker(
+                [29.7990412, 31.2064059],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var icon_6174e20150812ec8acf5cc564095f5ee = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_a1d439e0cc4f3a7a4169c7d5c05b533b.setIcon(icon_6174e20150812ec8acf5cc564095f5ee);
+        
+    
+            var marker_20f35941834f79971d953ea6a4d626ed = L.marker(
+                [29.7990412, 31.2064059],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var div_icon_4de7ba00caac119679071bd4129f469c = L.divIcon({"className": "empty", "html": "\n                            \u003cdiv style=\"font-size: 12.5px; color: darkgreen;font-weight:bold;font-family:Times New Roman;background-color: white;text-align:center;border-radius: 5px; border: 1px solid black\"\u003e\n                            \u003cb\u003e Site: Dahshur\u003cbr\u003e\n                            Kings: 1; Queens: 0\n                            \u003c/div\u003e\n                            ", "iconAnchor": [170, 0], "iconSize": [170, 0]});
+            marker_20f35941834f79971d953ea6a4d626ed.setIcon(div_icon_4de7ba00caac119679071bd4129f469c);
+        
+    
+            var marker_35a4a8fb22836aef55c118f45ea24cce = L.marker(
+                [29.9870753, 31.2118063],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var icon_e204e3a5f6f99cd627b764fe2d4f8301 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_35a4a8fb22836aef55c118f45ea24cce.setIcon(icon_e204e3a5f6f99cd627b764fe2d4f8301);
+        
+    
+            var marker_c1cc37267462f606b4e09aaa056a5773 = L.marker(
+                [29.9870753, 31.2118063],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var div_icon_589895ba3351ecbb839878571fd510fd = L.divIcon({"className": "empty", "html": "\n                            \u003cdiv style=\"font-size: 12.5px; color: blue;font-weight:bold;font-family:Times New Roman;background-color: white;text-align:center;border-radius: 5px; border: 1px solid black\"\u003e\n                            \u003cb\u003e Site: Giza\u003cbr\u003e\n                            Kings: 3; Queens: 7\n                            \u003c/div\u003e\n                            ", "iconAnchor": [170, 0], "iconSize": [170, 0]});
+            marker_c1cc37267462f606b4e09aaa056a5773.setIcon(div_icon_589895ba3351ecbb839878571fd510fd);
+        
+    
+            var marker_d78d4f98f6f1ecf9589b6d0e06295b63 = L.marker(
+                [30.04448, 31.09269],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var icon_b72fd2a0dc802225a217f0b562cdb07b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "", "iconColor": "white", "markerColor": "darkblue", "prefix": "glyphicon"}
+            );
+            marker_d78d4f98f6f1ecf9589b6d0e06295b63.setIcon(icon_b72fd2a0dc802225a217f0b562cdb07b);
+        
+    
+            var marker_95f126c741e52e7cf3de20270ad6f213 = L.marker(
+                [30.04448, 31.09269],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var div_icon_63a8171f0269309f044978b06472308c = L.divIcon({"className": "empty", "html": "\n                            \u003cdiv style=\"font-size: 12.5px; color: darkblue;font-weight:bold;font-family:Times New Roman;background-color: white;text-align:center;border-radius: 5px; border: 1px solid black\"\u003e\n                            \u003cb\u003e Site: Abu Roash\u003cbr\u003e\n                            Kings: 1; Queens: 0\n                            \u003c/div\u003e\n                            ", "iconAnchor": [170, 0], "iconSize": [170, 0]});
+            marker_95f126c741e52e7cf3de20270ad6f213.setIcon(div_icon_63a8171f0269309f044978b06472308c);
+        
+    
+            var marker_2e326f2437b9945493b5ad857cc5f901 = L.marker(
+                [29.8981591, 31.2084197],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var icon_7c02013a35ed9236c74b30790e8b3eb1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
+            );
+            marker_2e326f2437b9945493b5ad857cc5f901.setIcon(icon_7c02013a35ed9236c74b30790e8b3eb1);
+        
+    
+            var marker_dc5b4389b65db53c31838c2b48b6e57a = L.marker(
+                [29.8981591, 31.2084197],
+                {}
+            ).addTo(map_0a5d7fab332c763f6093c2e31d5b8a86);
+        
+    
+            var div_icon_2db8815aa07a7436a8852954e897ef8d = L.divIcon({"className": "empty", "html": "\n                            \u003cdiv style=\"font-size: 12.5px; color: purple;font-weight:bold;font-family:Times New Roman;background-color: white;text-align:center;border-radius: 5px; border: 1px solid black\"\u003e\n                            \u003cb\u003e Site: Abusir\u003cbr\u003e\n                            Kings: 4; Queens: 2\n                            \u003c/div\u003e\n                            ", "iconAnchor": [170, 0], "iconSize": [170, 0]});
+            marker_dc5b4389b65db53c31838c2b48b6e57a.setIcon(div_icon_2db8815aa07a7436a8852954e897ef8d);
+        
+</script>
+</html>
+        </div>
+        
+    <div id="table-container" style="position: absolute; top: 3px;bottom:0.1px; right: 15px; width: 250px; background-color: none; border: 1px solid #ccc; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 9999;text-align:center">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid black; padding: 3px; background-color:#d5bdaf; font-family:Times New Roman; color: #000;">Site</th>
+                    <th style="border: 1px solid black; padding: 3px; background-color:#d5bdaf; font-family:Times New Roman; color: #000;">Kings</th>
+                    <th style="border: 1px solid black; padding: 3px; background-color:#d5bdaf; font-family:Times New Roman; color: #000;">Queens</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#002060;">Abu Roash​</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#002060;">Djedefre ​</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#002060;">​</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#a02b93;">Abusir</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#a02b93;">Sahure, Neferirkare,​Neferefre, Niuserre</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#a02b93;">Khentkaus II, Reputnebu ​</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 3px;background-color:#e3d5ca; font-family:Times New Roman; color:#678244;">Dahshur </td>
+                    <td style="border: 1px solid black; padding: 3px;background-color:#e3d5ca; font-family:Times New Roman; color:#678244;">Sneferu</td>
+                    <td style="border: 1px solid black; padding: 3px;background-color:#e3d5ca; font-family:Times New Roman; color:#678244;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#47b3ff;">Giza</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0;  font-family:Times New Roman; color:#47b3ff;">Khufu, Khafre,​Menkaure</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0;font-family:Times New Roman; color:#47b3ff;">Meretites I, Henutsen, Khamerernebty II, Khentkaus I</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#76b82a;">Meidum</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#76b82a;">Sneferu</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#76b82a;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#c00000;">North Saqqara</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#c00000;">Pepy I, Djedkare</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#c00000;">Inenek Inti, Nebuwenet, Ankhnespepy I, Ankhnespepy II, Meretites II, Mehaa, Behenu, Sebutet, Nedjeftet, Ankhnespepy III, Setibhor</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#ff0000;">Saqqara</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#ff0000;">Djoser, Sekhemkhet, Userkaf, Menkauhor,​Unas, Teti ​</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#ff0000;">Neferhetepes, Sesheshet I, Khuit II, Iput</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#f07a7a;">South Saqqara</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#f07a7a;">Shepseskaf, Merenre, Pepy II, Ibi ​</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#f5ebe0; font-family:Times New Roman; color:#f07a7a;">Neith, Iput II, Wedjebten​</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#e69a20;">Zawiyet el-Aryan​</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#e69a20;">Nebka, Khaba ​</td>
+                    <td style="border: 1px solid black; padding: 3px; background-color:#e3d5ca; font-family:Times New Roman; color:#e69a20;">​</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    </body>
+    </html>
+    
