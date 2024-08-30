@@ -49,13 +49,12 @@ The dataset cleanup script can be found in the `src/cleanup/cleanup_script.py` f
 #### Example: Command-line Interface
 Suppose a user wanted to normalize the columns names of a dataset named `raw.csv`, as well as remove whitespace in two columns named `A` and `B`, and output the result to a file called `new.csv`. This could be accomplished by running
 
-`poetry run python src/cleanup/cleanup_script.py -i raw.csv -o new.csv -normcols -removews A B`
+`poetry run python src/cleanup/cleanup_script.py -i raw.csv -o new.csv --normcols --removews A B`
 
 #### Example: CSV Instruction File
 Suppose the same user wanted to perform the previously described cleanup steps without typing so much information into the command-line. They could create a CSV file with the same instructions and arguments that he can provide to the program instead. Suppose that they call it `instructions.csv`. They could enter the following data to it to replicate the previous process
 
 ```
-input,raw.csv
 output,new.csv
 normcols
 removews,A,B
@@ -63,7 +62,7 @@ removews,A,B
 
 The cleanup script could then be executed by running
 
-`poetry run python src/cleanup/cleanup_script.y --commandfile`
+`poetry run python src/cleanup/cleanup_script.py -i raw.csv --commandfile`
 
 ### Visual Prototyping
 We experiment with the creation of various different types of visuals in Jupyter notebooks, which can be stored in the ``Notebooks`` directory. Dynamic visuals can and have been created with Plotly, but as of the time of writing we have decided to put those on hold for now. If one would like to create or edit new or existing visuals of that type, they can be created with reference to the Plotly.js template that exists under the `templates` directory, which will create a webpage that can be stored in the `docs` directory. This allows for the webpage to be hosted through GitHub Pages for public viewing purposes, which is performed automatically so long as the webpage is stored in the `docs` directory.
