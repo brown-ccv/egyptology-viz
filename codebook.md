@@ -48,7 +48,7 @@
 
 ### Missing Values:
 
--   Missing values are typically represented by the absence of data in a given row/column, which is to say NA or NaN. Occasionally, missing numeric values will be represented as ``0`` or ``0.0`` as well as NaN. This is the case for pragmatic reasons, typically for the purposes of using less code when generating our visuals.
+-   Missing values are typically represented by the absence of data in a given row/column, which is to say NA or NaN. Occasionally, missing numeric values will be represented as ``0`` or ``0.0``. This is the case for pragmatic reasons, typically for the purposes of using less code when generating our visuals.
 
 ----------
 
