@@ -1,4 +1,4 @@
-# Pyramid height by pyramid complex histogram without timeline
+""" Pyramid height by pyramid complex histogram without timeline """
 
 import pandas as pd
 import numpy as np
@@ -20,8 +20,9 @@ def average_of_two(val):
     if isinstance(val, int) or isinstance(val, float) or pd.isna(val): 
         return val
 
+    # Temporary: Deals with that one weird actual AND projected value
     if ',' in val: 
-        return 72    # Temporary: Deals with that one weird value
+        return 72    
 
     nums = val.split('-')
     if len(nums) == 1: 
@@ -102,7 +103,9 @@ def create_figure(tl):
                                                                 'Completed': '', 
                                                                 '': '', 
                                                                 np.nan: ''}),
-                # Currently unused, may be wanted later
+                # Alters border color + size of bars representing pyramids 
+                # that contain pyramid texts.
+                # Currently unused, may be wanted later.
                 #"line_color": tl['pyramid_texts'].map({'Yes': 'black', 
                 #                                    np.nan: 'white'}),
                 #"line_width": tl['pyramid_texts'].map({'Yes': 2.5, 
@@ -145,6 +148,8 @@ def create_figure(tl):
         )
     )
     ''' Currently unused, but may be wanted later.
+        Add a legend trace to represent 'Unfinished?' pyramids with 
+        a pattern shape of '/'.
     fig.add_trace(
         go.Bar(
             x=[None],
@@ -169,7 +174,7 @@ def create_figure(tl):
         )
     )
 
-    
+    # Ensure that the king legend trace doesn't have a pattern shape
     fig.update_traces(marker=dict(pattern_shape=''),
                     selector=dict(name="King"))
 
